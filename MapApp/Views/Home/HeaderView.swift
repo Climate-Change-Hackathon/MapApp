@@ -11,6 +11,7 @@ struct HeaderView: View {
     @State var isSearching = false
     @State var search = ""
     @ObservedObject var locationManager = LocationManager()
+    @State var show = false
     var body: some View {
         
         HStack {
@@ -64,8 +65,9 @@ struct HeaderView: View {
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
                 })
+               
                 .sheet(isPresented: $locationManager.show, content: {
-                    EmptyView()
+                    DirectionsView(route: $locationManager.route)
                 })
             } else {
                 Button(action: {

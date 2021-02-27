@@ -1,0 +1,81 @@
+//
+//  DirectionsView.swift
+//  MapApp
+//
+//  Created by Andreas on 2/27/21.
+//
+
+import SwiftUI
+import MapKit
+import CoreLocation
+
+struct DirectionsView: View {
+    @Binding var route: Route
+
+    @State var mapRoutes: [MKRoute] = []
+    @State var totalTravelTime: TimeInterval = 0
+    @State var totalDistance: CLLocationDistance = 0
+
+    @State var groupedRoutes: [(startItem: MKMapItem, endItem: MKMapItem)] = []
+
+  
+
+    var body: some View {
+        ZStack {
+            Color.clear
+                .onAppear() {
+                    groupAndRequestDirections()
+                }
+            VStack {
+        ForEach(mapRoutes.last?.steps ?? [], id: \.self) { step in
+            Text(step.instructions)
+                .font(.headline)
+        }
+            }
+        }
+    }
+    
+    private func groupAndRequestDirections() {
+      guard let firstStop = route.stops.first else {
+        return
+      }
+
+      groupedRoutes.append((route.origin, firstStop))
+
+      if route.stops.count == 2 {
+        let secondStop = route.stops[1]
+
+        groupedRoutes.append((firstStop, secondStop))
+        groupedRoutes.append((secondStop, route.origin))
+      }
+
+      fetchNextRoute()
+    }
+
+    private func fetchNextRoute() {
+      guard !groupedRoutes.isEmpty else {
+       
+        return
+      }
+
+      let nextGroup = groupedRoutes.removeFirst()
+      let request = MKDirections.Request()
+
+      request.source = nextGroup.startItem
+      request.destination = nextGroup.endItem
+
+      let directions = MKDirections(request: request)
+
+      directions.calculate { response, error in
+        guard let mapRoute = response?.routes.first else {
+          
+          return
+        }
+        mapRoutes.append(mapRoute)
+
+       
+        self.fetchNextRoute()
+      }
+    }
+}
+
