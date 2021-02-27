@@ -5,20 +5,30 @@
 //  Created by Fahim Rahman on 27/2/21.
 //
 import SwiftUI
+import MapKit
+
+
+// MARK: - Location List View
 
 struct LocList: View {
     
+    let landmarks: [Landmark]
+    
     var body: some View {
-        
-        ScrollView(showsIndicators: false) {
             
-            LazyVStack {
+            List {
                 
-                ForEach(0..<10) {_ in LocListCell() }
+                ForEach(self.landmarks, id: \.id) { landmark in LocListCell(
+                    
+                    name: landmark.name,
+                    lat: landmark.lat,
+                    lon: landmark.lon
+                )
+                }
                     .listRowBackground(Color("Light"))
                     .opacity(0.8)
             }
-        }
+            
         .background(Color("Light"))
         .opacity(0.8)
         .edgesIgnoringSafeArea([.bottom])
@@ -26,18 +36,47 @@ struct LocList: View {
 }
 
 
-struct LocListCell: View {
 
+
+
+// MARK: - Landmark Model
+
+struct Landmark {
+
+    let placemark: MKPlacemark
+    
+    var id: UUID {
+        return UUID()
+    }
+    var name: String {
+        return self.placemark.name ?? ""
+    }
+    
+    var lat: Double {
+        return self.placemark.coordinate.latitude
+    }
+    
+    var lon: Double {
+        return self.placemark.coordinate.longitude
+    }
+}
+
+
+
+
+
+
+// MARK: - Location List Cell
+
+struct LocListCell: View {
+    
+    @State var name: String
+    @State var lat: Double
+    @State var lon: Double
+    
     var body: some View {
 
         ZStack {
-
-            Rectangle()
-                .fill(Color(red: 50/255, green: 50/255, blue: 50/255))
-                .frame(width: 260, height: 80, alignment: .center)
-                .cornerRadius(20)
-                .padding([.leading, .trailing], 5)
-
 
             HStack {
 
@@ -52,22 +91,22 @@ struct LocListCell: View {
 
                         Text("1.4")
                             .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .font(.system(size: 17, weight: .bold, design: .rounded))
 
 
-                        Text("km")
+                        Text("Mi")
                             .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                     }
                 }
                 .padding(.trailing)
 
 
-                VStack {
+                VStack(alignment: .leading) {
 
-                    Text("Tattoine")
+                    Text(name)
                         .foregroundColor(.white)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding([.top], 5)
@@ -79,7 +118,7 @@ struct LocListCell: View {
                         Image(systemName: "mappin")
                             .foregroundColor(.white)
 
-                        Text("Lat: 23.88")
+                        Text("Lat: \(lat.rounded())")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(.green)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
@@ -92,7 +131,7 @@ struct LocListCell: View {
                         Image(systemName: "mappin")
                             .foregroundColor(.white)
 
-                        Text("Lon: 90.45")
+                        Text("Lon: \(lon.rounded())")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(.green)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
@@ -104,4 +143,3 @@ struct LocListCell: View {
         }
     }
 }
-

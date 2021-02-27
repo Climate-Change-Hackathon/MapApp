@@ -16,25 +16,26 @@ struct HeaderView: View {
     @Binding var route: Route
     @Binding var mkRoute: MKRoute
     @State var typing = false
+    @State private var landmarks: [Landmark] = [Landmark]()
     var body: some View {
         
         HStack {
             if !isSearching {
-            Button(action: {
-                
-            }) {
-                ZStack {
+                Button(action: {
                     
-                    Circle()
-                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color("ExtraLightGreen"))
-                        .opacity(0.8)
-                    Image(systemName: "sidebar.left")
-                        .foregroundColor(Color("Green"))
-                        .font(.headline)
-                }
-            }   .padding()
-            Spacer()
+                }) {
+                    ZStack {
+                        
+                        Circle()
+                            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(Color("ExtraLightGreen"))
+                            .opacity(0.8)
+                        Image(systemName: "sidebar.left")
+                            .foregroundColor(Color("Green"))
+                            .font(.headline)
+                    }
+                }   .padding()
+                Spacer()
             }
             Button(action: {
                 withAnimation(.easeInOut) {
@@ -70,19 +71,24 @@ struct HeaderView: View {
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
                     if typing {
                         
-                        LocList()
+                        LocList(landmarks: landmarks)
                             .frame(height: 300)
                             .cornerRadius(25)
                     }
                 }  .padding()
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
-                                   
-                                   typing = true
-                                   if search == "" { typing.toggle() }
-                               })
+                    
+                    typing = true
+                    
+                    DispatchQueue.main.async {
+                        self.getNearbyLoc()
+                    }
+
+                    if search == "" { typing.toggle() }
+                })
                 .onChange(of: locationManager.route.stops, perform: { value in
-                     route = locationManager.route
+                    route = locationManager.route
                 })
                 .sheet(isPresented: $locationManager.show, content: {
                     DirectionsView(route: $locationManager.route, mkRoute: $mkRoute)
@@ -94,7 +100,7 @@ struct HeaderView: View {
                     ZStack {
                         
                         Circle()
-                            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 40, height: 40, alignment: .center)
                             .foregroundColor(Color("ExtraLightGreen"))
                             .opacity(0.8)
                         Image(systemName: "gear")
@@ -103,10 +109,29 @@ struct HeaderView: View {
                             .padding()
                     }
                 }
-             
+                
+            }
+        }
+    }
+    
+    
+    
+    private func getNearbyLoc() {
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = search
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            
+            if let response = response {
+                
+                let mapItems = response.mapItems
+                
+                self.landmarks = mapItems.map {
+                    Landmark(placemark: $0.placemark)
+                }
             }
         }
     }
 }
-
-
