@@ -18,7 +18,7 @@ struct DirectionsView: View {
 
     @State var groupedRoutes: [(startItem: MKMapItem, endItem: MKMapItem)] = []
 
-  
+    @Binding var mkRoute: MKRoute
 
     var body: some View {
         ZStack {
@@ -70,6 +70,7 @@ struct DirectionsView: View {
           
           return
         }
+        mkRoute = mapRoute
         mapRoutes.append(mapRoute)
 
        

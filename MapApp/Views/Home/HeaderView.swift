@@ -13,6 +13,8 @@ struct HeaderView: View {
     @ObservedObject var locationManager = LocationManager()
     @State var show = false
     @Binding var region: MKCoordinateRegion
+    @Binding var route: Route
+    @Binding var mkRoute: MKRoute
     var body: some View {
         
         HStack {
@@ -63,16 +65,18 @@ struct HeaderView: View {
                     TextField("Search", text: $search)
                         
                         .padding()
-                        .background( RoundedRectangle(cornerRadius: 25.0)
+                        .background(RoundedRectangle(cornerRadius: 25.0)
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
                     
                 }  .padding()
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
                 })
-               
+                .onChange(of: locationManager.route.stops, perform: { value in
+                     route = locationManager.route
+                })
                 .sheet(isPresented: $locationManager.show, content: {
-                    DirectionsView(route: $locationManager.route)
+                    DirectionsView(route: $locationManager.route, mkRoute: $mkRoute)
                 })
             } else {
                 Button(action: {
