@@ -15,6 +15,7 @@ struct HeaderView: View {
     @Binding var region: MKCoordinateRegion
     @Binding var route: Route
     @Binding var mkRoute: MKRoute
+    @State var typing = false
     var body: some View {
         
         HStack {
@@ -60,18 +61,26 @@ struct HeaderView: View {
                 }
             }
             if isSearching {
-                ZStack {
+                VStack {
                     
                     TextField("Search", text: $search)
                         
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 25.0)
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
-                    
+                    if typing {
+                        
+                        LocList()
+                            .frame(height: 300)
+                            .cornerRadius(25)
+                    }
                 }  .padding()
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
-                })
+                                   
+                                   typing = true
+                                   if search == "" { typing.toggle() }
+                               })
                 .onChange(of: locationManager.route.stops, perform: { value in
                      route = locationManager.route
                 })
