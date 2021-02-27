@@ -23,6 +23,7 @@
 		E15A653825EA5E180075B15C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A653725EA5E180075B15C /* LocationManager.swift */; };
 		E15A654025EA666A0075B15C /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A653F25EA666A0075B15C /* DirectionsView.swift */; };
 		E15A654325EA69E20075B15C /* DirectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A654225EA69E20075B15C /* DirectionRow.swift */; };
+		E15A654825EA80E50075B15C /* ArivalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A654725EA80E40075B15C /* ArivalInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		E15A653725EA5E180075B15C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E15A653F25EA666A0075B15C /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		E15A654225EA69E20075B15C /* DirectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionRow.swift; sourceTree = "<group>"; };
+		E15A654725EA80E40075B15C /* ArivalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArivalInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				E15A650625E9D67A0075B15C /* ContentView.swift */,
-				E15A653F25EA666A0075B15C /* DirectionsView.swift */,
-				E15A654225EA69E20075B15C /* DirectionRow.swift */,
+				E15A654725EA80E40075B15C /* ArivalInputView.swift */,
+				E15A654525EA7EAE0075B15C /* Directions */,
 				E15A653D25EA665C0075B15C /* Home */,
 			);
 			path = Views;
@@ -143,6 +145,15 @@
 				E15A652025E9DD330075B15C /* MapView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		E15A654525EA7EAE0075B15C /* Directions */ = {
+			isa = PBXGroup;
+			children = (
+				E15A653F25EA666A0075B15C /* DirectionsView.swift */,
+				E15A654225EA69E20075B15C /* DirectionRow.swift */,
+			);
+			path = Directions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				E15A652425E9DD790075B15C /* HeaderView.swift in Sources */,
 				E15A652B25EA5D070075B15C /* RouteAnnotation.swift in Sources */,
 				E15A653825EA5E180075B15C /* LocationManager.swift in Sources */,
+				E15A654825EA80E50075B15C /* ArivalInputView.swift in Sources */,
 				E15A651825E9DAE20075B15C /* HomeView.swift in Sources */,
 				E15A652125E9DD330075B15C /* MapView.swift in Sources */,
 				E15A653325EA5D3E0075B15C /* Extensions.swift in Sources */,

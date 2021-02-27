@@ -31,11 +31,11 @@ struct DirectionsRow: View {
                 .font(.title)
             }
             if step.instructions.lowercased().contains("exit") {
-            Image(systemName: "arrow.up")
+            Image(systemName: "xmark")
                 .font(.title)
             }
             if step.instructions.lowercased().contains("roundabout") {
-            Image(systemName: "arrow.up")
+            Image(systemName: "arrow.counterclockwise")
                 .font(.title)
             }
             Spacer()
