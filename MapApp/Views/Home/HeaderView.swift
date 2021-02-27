@@ -10,14 +10,15 @@ import MapKit
 struct HeaderView: View {
     @State var isSearching = false
     @State var search = ""
-    @ObservedObject var locationManager = LocationManager()
-    @State var show = false
+    @ObservedObject var locationManager: LocationManager
+   
     @Binding var region: MKCoordinateRegion
     @Binding var route: Route
     @Binding var mkRoute: MKRoute
     @State var typing = false
+    @Binding var show: Bool
     var body: some View {
-        
+        ZStack {
         HStack {
             if !isSearching {
             Button(action: {
@@ -45,6 +46,7 @@ struct HeaderView: View {
                             center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
                             span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
                         )
+                        typing = false
                     }
                 }
             }) {
@@ -68,12 +70,7 @@ struct HeaderView: View {
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 25.0)
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
-                    if typing {
-                        
-                        LocList()
-                            .frame(height: 300)
-                            .cornerRadius(25)
-                    }
+                   
                 }  .padding()
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
@@ -81,11 +78,12 @@ struct HeaderView: View {
                                    typing = true
                                    if search == "" { typing.toggle() }
                                })
-                .onChange(of: locationManager.route.stops, perform: { value in
+                .onChange(of: locationManager.route.label, perform: { value in
                      route = locationManager.route
                 })
-                .sheet(isPresented: $locationManager.show, content: {
-                    DirectionsView(route: $locationManager.route, mkRoute: $mkRoute)
+               
+                .onChange(of: locationManager.show, perform: { value in
+                     show = locationManager.show
                 })
             } else {
                 Button(action: {
@@ -94,7 +92,7 @@ struct HeaderView: View {
                     ZStack {
                         
                         Circle()
-                            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 40, height: 40, alignment: .center)
                             .foregroundColor(Color("ExtraLightGreen"))
                             .opacity(0.8)
                         Image(systemName: "gear")
@@ -106,7 +104,20 @@ struct HeaderView: View {
              
             }
         }
+           
     }
-}
+        if typing {
+            VStack {
+                HStack {
+                    Spacer()
+            LocList(region: $region, route: $route, mkRoute: $mkRoute)
+                .frame(width: 225, height: 300)
+                .cornerRadius(25)
+              
+                }
+                Spacer()
+            } .padding()
+        }
+    }}
 
 

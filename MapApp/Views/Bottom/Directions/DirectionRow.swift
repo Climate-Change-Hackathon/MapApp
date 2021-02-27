@@ -12,7 +12,7 @@ struct DirectionsRow: View {
     @State var distance = Measurement(value: 0.0, unit: UnitLength.miles)
     var body: some View {
         ZStack {
-            Color.clear
+            Color(.secondarySystemBackground)
                 .onAppear() {
                     let feet = Measurement(value: step.distance, unit: UnitLength.feet)
                     distance = feet.converted(to: UnitLength.miles)
@@ -45,6 +45,7 @@ struct DirectionsRow: View {
                     Spacer()
                     Text("\(distance.value)")
                     .font(.title)
+                        .foregroundColor(.black)
                     .bold()
                         .multilineTextAlignment(.trailing)
                     Text("\(distance.unit.symbol)")
