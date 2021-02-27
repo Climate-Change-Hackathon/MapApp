@@ -22,7 +22,7 @@ struct HeaderView: View {
                     
                     Circle()
                         .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color("Light"))
+                        .foregroundColor(Color("ExtraLightGreen"))
                         .opacity(0.8)
                     Image(systemName: "sidebar.left")
                         .foregroundColor(Color("Green"))
@@ -43,7 +43,7 @@ struct HeaderView: View {
                     
                     Circle()
                         .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color("Light"))
+                        .foregroundColor(Color("ExtraLightGreen"))
                         .opacity(0.8)
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color("Green"))
@@ -58,7 +58,7 @@ struct HeaderView: View {
                         
                         .padding()
                         .background( RoundedRectangle(cornerRadius: 25.0)
-                                        .foregroundColor(Color("Light")).opacity(0.8))
+                                        .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
                     
                 }  .padding()
                 .onChange(of: search, perform: { value in
@@ -75,7 +75,7 @@ struct HeaderView: View {
                         
                         Circle()
                             .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(Color("Light"))
+                            .foregroundColor(Color("ExtraLightGreen"))
                             .opacity(0.8)
                         Image(systemName: "gear")
                             .foregroundColor(Color("Green"))
