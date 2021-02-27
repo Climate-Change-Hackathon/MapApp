@@ -13,7 +13,22 @@ struct HeaderView: View {
     var body: some View {
         
         HStack {
+            if !isSearching {
+            Button(action: {
+                
+            }) {
+                ZStack {
+                    
+                    Circle()
+                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("Light"))
+                        .opacity(0.8)
+                    Image(systemName: "sidebar.left")
+                        .foregroundColor(Color("Green"))
+                }
+            }   .padding()
             Spacer()
+            }
             Button(action: {
                 withAnimation(.easeInOut) {
                     isSearching.toggle()
@@ -53,6 +68,7 @@ struct HeaderView: View {
                             .foregroundColor(Color("Green"))
                     }
                 }   .padding()
+             
             }
         }
     }
