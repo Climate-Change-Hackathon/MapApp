@@ -16,6 +16,11 @@
 		E15A651825E9DAE20075B15C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A651725E9DAE20075B15C /* HomeView.swift */; };
 		E15A652125E9DD330075B15C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A652025E9DD330075B15C /* MapView.swift */; };
 		E15A652425E9DD790075B15C /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A652325E9DD790075B15C /* HeaderView.swift */; };
+		E15A652825EA5CE80075B15C /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A652725EA5CE80075B15C /* Route.swift */; };
+		E15A652B25EA5D070075B15C /* RouteAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A652A25EA5D070075B15C /* RouteAnnotation.swift */; };
+		E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */; };
+		E15A653325EA5D3E0075B15C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A653225EA5D3E0075B15C /* Extensions.swift */; };
+		E15A653825EA5E180075B15C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A653725EA5E180075B15C /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		E15A651725E9DAE20075B15C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E15A652025E9DD330075B15C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E15A652325E9DD790075B15C /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E15A652725EA5CE80075B15C /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		E15A652A25EA5D070075B15C /* RouteAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAnnotation.swift; sourceTree = "<group>"; };
+		E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBuilder.swift; sourceTree = "<group>"; };
+		E15A653225EA5D3E0075B15C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E15A653725EA5E180075B15C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,10 @@
 			children = (
 				E15A650225E9D6790075B15C /* AppDelegate.swift */,
 				E15A650425E9D67A0075B15C /* SceneDelegate.swift */,
+				E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */,
+				E15A653A25EA5E1F0075B15C /* Managers */,
+				E15A653525EA5D740075B15C /* Extensions */,
+				E15A652D25EA5D0C0075B15C /* Model */,
 				E15A651D25E9DC0C0075B15C /* Views */,
 				E15A650825E9D67C0075B15C /* Assets.xcassets */,
 				E15A650D25E9D67C0075B15C /* LaunchScreen.storyboard */,
@@ -90,6 +104,31 @@
 				E15A652025E9DD330075B15C /* MapView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E15A652D25EA5D0C0075B15C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E15A652725EA5CE80075B15C /* Route.swift */,
+				E15A652A25EA5D070075B15C /* RouteAnnotation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E15A653525EA5D740075B15C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E15A653225EA5D3E0075B15C /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E15A653A25EA5E1F0075B15C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E15A653725EA5E180075B15C /* LocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,9 +203,14 @@
 			files = (
 				E15A650325E9D6790075B15C /* AppDelegate.swift in Sources */,
 				E15A652425E9DD790075B15C /* HeaderView.swift in Sources */,
+				E15A652B25EA5D070075B15C /* RouteAnnotation.swift in Sources */,
+				E15A653825EA5E180075B15C /* LocationManager.swift in Sources */,
 				E15A651825E9DAE20075B15C /* HomeView.swift in Sources */,
 				E15A652125E9DD330075B15C /* MapView.swift in Sources */,
+				E15A653325EA5D3E0075B15C /* Extensions.swift in Sources */,
 				E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */,
+				E15A652825EA5CE80075B15C /* Route.swift in Sources */,
+				E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */,
 				E15A650725E9D67A0075B15C /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

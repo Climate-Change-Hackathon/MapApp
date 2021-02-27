@@ -10,6 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     @State var isSearching = false
     @State var search = ""
+    @ObservedObject var locationManager = LocationManager()
     var body: some View {
         
         HStack {
@@ -25,6 +26,7 @@ struct HeaderView: View {
                         .opacity(0.8)
                     Image(systemName: "sidebar.left")
                         .foregroundColor(Color("Green"))
+                        .font(.headline)
                 }
             }   .padding()
             Spacer()
@@ -32,6 +34,9 @@ struct HeaderView: View {
             Button(action: {
                 withAnimation(.easeInOut) {
                     isSearching.toggle()
+                    if !isSearching {
+                        locationManager.buildRoute()
+                    }
                 }
             }) {
                 ZStack {
@@ -42,8 +47,10 @@ struct HeaderView: View {
                         .opacity(0.8)
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color("Green"))
+                        .font(.headline)
+                        .padding()
                 }
-            }   .padding()
+            }
             if isSearching {
                 ZStack {
                     
@@ -54,6 +61,12 @@ struct HeaderView: View {
                                         .foregroundColor(Color("Light")).opacity(0.8))
                     
                 }  .padding()
+                .onChange(of: search, perform: { value in
+                    locationManager.search = search
+                })
+                .sheet(isPresented: $locationManager.show, content: {
+                    EmptyView()
+                })
             } else {
                 Button(action: {
                     
@@ -66,8 +79,10 @@ struct HeaderView: View {
                             .opacity(0.8)
                         Image(systemName: "gear")
                             .foregroundColor(Color("Green"))
+                            .font(.headline)
+                            .padding()
                     }
-                }   .padding()
+                }
              
             }
         }
