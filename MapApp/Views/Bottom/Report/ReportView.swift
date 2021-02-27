@@ -1,5 +1,5 @@
 //
-//  BottomView.swift
+//  ReportView.swift
 //  MapApp
 //
 //  Created by Andreas on 2/27/21.
@@ -8,34 +8,34 @@
 import SwiftUI
 import MapKit
 
-struct BottomView: View {
-    @Binding var route: Route
-    @Binding var mkRoute: MKRoute
-    @State var directions = false
-    @State var report = false
+struct ReportView: View {
+   
+    @Binding var report: Bool
+    
     let columns = [
-            GridItem(.adaptive(minimum: 80)),
+        GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80))
         ]
   
     var body: some View {
         ZStack {
+            Color(.secondarySystemBackground)
         
                       LazyVGrid(columns: columns, spacing: 20) {
                         
                         Button(action: {
-                            directions = true
+                            
                         }) {
                             VStack {
                             ZStack {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "arrow.up")
+                                Image(systemName: "speedometer")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Directions")
+                                Text("Traffic")
                                     .foregroundColor(Color("LightGreen"))
                                     .font(.headline)
                             }
@@ -48,10 +48,10 @@ struct BottomView: View {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "building.2")
+                                Image(systemName: "person")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Restaurants")
+                                Text("Police")
                                     .font(.headline)
                                     .foregroundColor(Color("LightGreen"))
                             }
@@ -67,35 +67,45 @@ struct BottomView: View {
                                 Image(systemName: "building")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Stores")
+                                Text("Eco-Friendly")
                                     .font(.headline)
                                     .foregroundColor(Color("LightGreen"))
                             }
                         }
                         Button(action: {
-                            report = true
+                            
                         }) {
                             VStack {
                             ZStack {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "mappin")
+                                Image(systemName: "stop")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Report")
+                                Text("Hazard")
                                     .font(.headline)
                                     .foregroundColor(Color("LightGreen"))
                             }
                         
                       }
             }
-        if directions {
-            DirectionsView(route: $route, mkRoute: $mkRoute, directions: $directions)
-        }
-            if report {
-                ReportView(report: $report)
-            }
+            VStack {
+               
+                HStack {
+                  
+                    Button(action: {
+                        report = false
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(Color("Green"))
+                    }
+                    Spacer()
+                }
+                Spacer()
+            } .padding()
     }
     }
 }

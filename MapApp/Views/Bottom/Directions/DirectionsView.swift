@@ -22,18 +22,20 @@ struct DirectionsView: View {
     @Binding var directions: Bool
     var body: some View {
         ZStack {
-            Color.clear
+            Color(.secondarySystemBackground)
                 .onAppear() {
                     groupAndRequestDirections()
                 }
             if ((mapRoutes.first?.steps.isEmpty) != nil) {
+                Color(.secondarySystemBackground)
                 Text("Pick a route to display directions")
                     .font(.title)
                     .bold()
                     .multilineTextAlignment(.center)
                     .padding()
+               
             }
-            Color(.systemBackground)
+            
             List {
         ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
             DirectionsRow(step: step)
