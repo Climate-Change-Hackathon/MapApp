@@ -91,8 +91,9 @@ class LocationManager: NSObject, ObservableObject {
 
       switch result {
       case .success(let route):
-        self.show = true
+        
         self.route = route
+        self.show = true
 print(route)
       case .failure(let error):
         let errorMessage: String
@@ -134,7 +135,7 @@ extension LocationManager: CLLocationManagerDelegate {
 
         CLGeocoder().reverseGeocodeLocation(firstLocation) { places, _ in
             guard let firstPlace = places?.first, self.search == "" else {
-                print("issue")
+                print("")
             return
           }
 
