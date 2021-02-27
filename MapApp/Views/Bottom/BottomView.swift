@@ -32,7 +32,7 @@ struct BottomView: View {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "xmark")
+                                Image(systemName: "arrow.up")
                                     .foregroundColor(Color("Green"))
                         }
                                 Text("Directions")
@@ -48,10 +48,10 @@ struct BottomView: View {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "xmark")
+                                Image(systemName: "building.2")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Directions")
+                                Text("Restaurants")
                                     .font(.headline)
                                     .foregroundColor(Color("LightGreen"))
                             }
@@ -64,10 +64,10 @@ struct BottomView: View {
                             Circle()
                                 .frame(width: 50, height: 50, alignment: .center)
                                 .foregroundColor(Color("ExtraLightGreen"))
-                                Image(systemName: "xmark")
+                                Image(systemName: "building")
                                     .foregroundColor(Color("Green"))
                         }
-                                Text("Directions")
+                                Text("Stores")
                                     .font(.headline)
                                     .foregroundColor(Color("LightGreen"))
                             }

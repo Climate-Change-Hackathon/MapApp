@@ -45,7 +45,7 @@ struct LocListCell: View {
         ZStack {
 
             Rectangle()
-                .fill(Color(red: 50/255, green: 50/255, blue: 50/255))
+                .fill(Color("ExtraLightGreen"))
                 .frame(width: 260, height: 80, alignment: .center)
                 .cornerRadius(20)
                 .padding([.leading, .trailing], 5)
@@ -64,13 +64,13 @@ struct LocListCell: View {
 
                         Text("1.4")
                             .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .font(.system(size: 17, weight: .bold, design: .rounded))
 
 
                         Text("km")
                             .minimumScaleFactor(0.5)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
 
                     }
                 }
@@ -80,7 +80,7 @@ struct LocListCell: View {
                 VStack {
 
                     Text("Tattoine")
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding([.top], 5)
                         .padding(.trailing)
@@ -89,7 +89,7 @@ struct LocListCell: View {
                     HStack {
 
                         Image(systemName: "mappin")
-                            .foregroundColor(.white)
+                            .foregroundColor(.green)
 
                         Text("Lat: 23.88")
                             .minimumScaleFactor(0.5)
@@ -102,7 +102,7 @@ struct LocListCell: View {
                     HStack {
 
                         Image(systemName: "mappin")
-                            .foregroundColor(.white)
+                            .foregroundColor(.green)
 
                         Text("Lon: 90.45")
                             .minimumScaleFactor(0.5)

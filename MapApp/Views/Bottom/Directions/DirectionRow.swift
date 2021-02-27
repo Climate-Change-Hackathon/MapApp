@@ -45,6 +45,7 @@ struct DirectionsRow: View {
                     Spacer()
                     Text("\(distance.value)")
                     .font(.title)
+                        .foregroundColor(.black)
                     .bold()
                         .multilineTextAlignment(.trailing)
                     Text("\(distance.unit.symbol)")

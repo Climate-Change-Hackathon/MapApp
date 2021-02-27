@@ -32,7 +32,7 @@ struct HomeView: View {
             isOpen: self.$show,
             maxHeight: geo.size.height * 0.7
             ) {
-                BottomView(route: $route, mkRoute: $mkRoute)
+                BottomView(route: $locationManager.route, mkRoute: $mkRoute)
             }.edgesIgnoringSafeArea(.all)
         }
     }

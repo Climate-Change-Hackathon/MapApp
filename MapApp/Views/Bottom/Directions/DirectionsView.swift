@@ -26,11 +26,6 @@ struct DirectionsView: View {
                 .onAppear() {
                     groupAndRequestDirections()
                 }
-            List {
-        ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
-            DirectionsRow(step: step)
-        }
-            }
             if ((mapRoutes.first?.steps.isEmpty) != nil) {
                 Text("Pick a route to display directions")
                     .font(.title)
@@ -38,6 +33,13 @@ struct DirectionsView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
+            Color(.systemBackground)
+            List {
+        ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
+            DirectionsRow(step: step)
+        }
+            } .padding(.top, 62)
+           
             VStack {
                
                 HStack {

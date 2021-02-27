@@ -18,7 +18,7 @@ struct HeaderView: View {
     @State var typing = false
     @Binding var show: Bool
     var body: some View {
-        
+        ZStack {
         HStack {
             if !isSearching {
             Button(action: {
@@ -46,6 +46,7 @@ struct HeaderView: View {
                             center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
                             span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
                         )
+                        typing = false
                     }
                 }
             }) {
@@ -69,12 +70,7 @@ struct HeaderView: View {
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 25.0)
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
-                    if typing {
-                        
-                        LocList(region: $region, route: $route, mkRoute: $mkRoute)
-                            .frame(height: 300)
-                            .cornerRadius(25)
-                    }
+                   
                 }  .padding()
                 .onChange(of: search, perform: { value in
                     locationManager.search = search
@@ -82,9 +78,10 @@ struct HeaderView: View {
                                    typing = true
                                    if search == "" { typing.toggle() }
                                })
-                .onChange(of: locationManager.route.stops, perform: { value in
+                .onChange(of: locationManager.route.label, perform: { value in
                      route = locationManager.route
                 })
+               
                 .onChange(of: locationManager.show, perform: { value in
                      show = locationManager.show
                 })
@@ -107,7 +104,20 @@ struct HeaderView: View {
              
             }
         }
+           
     }
-}
+        if typing {
+            VStack {
+                HStack {
+                    Spacer()
+            LocList(region: $region, route: $route, mkRoute: $mkRoute)
+                .frame(width: 225, height: 300)
+                .cornerRadius(25)
+              
+                }
+                Spacer()
+            } .padding()
+        }
+    }}
 
 
