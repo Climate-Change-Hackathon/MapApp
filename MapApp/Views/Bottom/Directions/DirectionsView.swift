@@ -17,9 +17,9 @@ struct DirectionsView: View {
     @State var totalDistance: CLLocationDistance = 0
 
     @State var groupedRoutes: [(startItem: MKMapItem, endItem: MKMapItem)] = []
-
+    
     @Binding var mkRoute: MKRoute
-
+    @Binding var directions: Bool
     var body: some View {
         ZStack {
             Color.clear
@@ -31,6 +31,29 @@ struct DirectionsView: View {
             DirectionsRow(step: step)
         }
             }
+            if ((mapRoutes.first?.steps.isEmpty) != nil) {
+                Text("Pick a route to display directions")
+                    .font(.title)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+            VStack {
+               
+                HStack {
+                  
+                    Button(action: {
+                        directions = false
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                            .padding()
+                            .foregroundColor(Color("Green"))
+                    }
+                    Spacer()
+                }
+                Spacer()
+            } .padding()
         }
     }
     

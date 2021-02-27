@@ -10,12 +10,13 @@ import MapKit
 struct HeaderView: View {
     @State var isSearching = false
     @State var search = ""
-    @ObservedObject var locationManager = LocationManager()
-    @State var show = false
+    @ObservedObject var locationManager: LocationManager
+   
     @Binding var region: MKCoordinateRegion
     @Binding var route: Route
     @Binding var mkRoute: MKRoute
     @State var typing = false
+    @Binding var show: Bool
     var body: some View {
         
         HStack {
@@ -70,7 +71,7 @@ struct HeaderView: View {
                                         .foregroundColor(Color("ExtraLightGreen")).opacity(0.8))
                     if typing {
                         
-                        LocList()
+                        LocList(region: $region, route: $route, mkRoute: $mkRoute)
                             .frame(height: 300)
                             .cornerRadius(25)
                     }
@@ -84,8 +85,8 @@ struct HeaderView: View {
                 .onChange(of: locationManager.route.stops, perform: { value in
                      route = locationManager.route
                 })
-                .sheet(isPresented: $locationManager.show, content: {
-                    DirectionsView(route: $locationManager.route, mkRoute: $mkRoute)
+                .onChange(of: locationManager.show, perform: { value in
+                     show = locationManager.show
                 })
             } else {
                 Button(action: {
@@ -94,7 +95,7 @@ struct HeaderView: View {
                     ZStack {
                         
                         Circle()
-                            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 40, height: 40, alignment: .center)
                             .foregroundColor(Color("ExtraLightGreen"))
                             .opacity(0.8)
                         Image(systemName: "gear")

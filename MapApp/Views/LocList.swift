@@ -5,16 +5,19 @@
 //  Created by Fahim Rahman on 27/2/21.
 //
 import SwiftUI
+import MapKit
 
 struct LocList: View {
-    
+    @Binding var region: MKCoordinateRegion
+    @Binding var route: Route
+    @Binding var mkRoute: MKRoute
     var body: some View {
         
         ScrollView(showsIndicators: false) {
             
             LazyVStack {
                 
-                ForEach(0..<10) {_ in LocListCell() }
+                ForEach(0..<10) {_ in LocListCell(region: $region, route: $route, mkRoute: $mkRoute) }
                     .listRowBackground(Color("Light"))
                     .opacity(0.8)
             }
@@ -23,13 +26,22 @@ struct LocList: View {
         .opacity(0.8)
         .edgesIgnoringSafeArea([.bottom])
     }
+    
 }
 
 
 struct LocListCell: View {
-
+@State var open = false
+    @Binding var region: MKCoordinateRegion
+    @Binding var route: Route
+    @Binding var mkRoute: MKRoute
     var body: some View {
 
+        Button(action: {
+            open = true
+        }) {
+            
+        
         ZStack {
 
             Rectangle()
@@ -102,6 +114,10 @@ struct LocListCell: View {
                 .padding(.leading)
             }
         }
-    }
+       
+        } .sheet(isPresented: $open, content: {
+            ArrivalInputView(mkRoute: $mkRoute, region: $region)
+        })
+    } 
 }
 

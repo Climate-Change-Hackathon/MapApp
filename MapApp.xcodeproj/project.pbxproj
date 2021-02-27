@@ -25,6 +25,8 @@
 		E15A654325EA69E20075B15C /* DirectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A654225EA69E20075B15C /* DirectionRow.swift */; };
 		E15A654825EA80E50075B15C /* ArivalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A654725EA80E40075B15C /* ArivalInputView.swift */; };
 		E15A654B25EA843E0075B15C /* LocList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A654A25EA843E0075B15C /* LocList.swift */; };
+		E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A655125EA9F910075B15C /* BottomSheet.swift */; };
+		E15A655625EAA0A60075B15C /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A655525EAA0A60075B15C /* BottomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		E15A654225EA69E20075B15C /* DirectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionRow.swift; sourceTree = "<group>"; };
 		E15A654725EA80E40075B15C /* ArivalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArivalInputView.swift; sourceTree = "<group>"; };
 		E15A654A25EA843E0075B15C /* LocList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocList.swift; sourceTree = "<group>"; };
+		E15A655125EA9F910075B15C /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		E15A655525EAA0A60075B15C /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +113,7 @@
 				E15A650625E9D67A0075B15C /* ContentView.swift */,
 				E15A654725EA80E40075B15C /* ArivalInputView.swift */,
 				E15A654A25EA843E0075B15C /* LocList.swift */,
-				E15A654525EA7EAE0075B15C /* Directions */,
+				E15A655825EAA0A90075B15C /* Bottom */,
 				E15A653D25EA665C0075B15C /* Home */,
 			);
 			path = Views;
@@ -159,6 +163,16 @@
 			path = Directions;
 			sourceTree = "<group>";
 		};
+		E15A655825EAA0A90075B15C /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+				E15A654525EA7EAE0075B15C /* Directions */,
+				E15A655125EA9F910075B15C /* BottomSheet.swift */,
+				E15A655525EAA0A60075B15C /* BottomView.swift */,
+			);
+			path = Bottom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,6 +189,8 @@
 			dependencies = (
 			);
 			name = MapApp;
+			packageProductDependencies = (
+			);
 			productName = MapApp;
 			productReference = E15A64FF25E9D6790075B15C /* MapApp.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +218,8 @@
 				Base,
 			);
 			mainGroup = E15A64F625E9D6790075B15C;
+			packageReferences = (
+			);
 			productRefGroup = E15A650025E9D6790075B15C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -239,10 +257,12 @@
 				E15A653325EA5D3E0075B15C /* Extensions.swift in Sources */,
 				E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */,
 				E15A652825EA5CE80075B15C /* Route.swift in Sources */,
+				E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */,
 				E15A654B25EA843E0075B15C /* LocList.swift in Sources */,
 				E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */,
 				E15A654025EA666A0075B15C /* DirectionsView.swift in Sources */,
 				E15A654325EA69E20075B15C /* DirectionRow.swift in Sources */,
+				E15A655625EAA0A60075B15C /* BottomView.swift in Sources */,
 				E15A650725E9D67A0075B15C /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
