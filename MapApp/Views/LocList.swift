@@ -10,10 +10,13 @@ import MapKit
 
 // MARK: - Location List View
 
+
+
 struct LocList: View {
-    
-    let landmarks: [Landmark]
-    
+   let landmarks: [Landmark]
+    @Binding var region: MKCoordinateRegion
+    @Binding var route: Route
+    @Binding var mkRoute: MKRoute
     var body: some View {
             
             List {
@@ -25,6 +28,7 @@ struct LocList: View {
                     lon: landmark.lon
                 )
                 }
+                ForEach(0..<10) {_ in LocListCell(region: $region, route: $route, mkRoute: $mkRoute) }
                     .listRowBackground(Color("Light"))
                     .opacity(0.8)
             }
@@ -33,6 +37,7 @@ struct LocList: View {
         .opacity(0.8)
         .edgesIgnoringSafeArea([.bottom])
     }
+    
 }
 
 
@@ -63,6 +68,25 @@ struct Landmark {
 
 
 
+struct LocListCell: View {
+@State var open = false
+    @Binding var region: MKCoordinateRegion
+    @Binding var route: Route
+    @Binding var mkRoute: MKRoute
+    var body: some View {
+
+        Button(action: {
+            open = true
+        }) {
+            
+        
+        ZStack {
+
+            Rectangle()
+                .fill(Color("ExtraLightGreen"))
+                .frame(width: 260, height: 80, alignment: .center)
+                .cornerRadius(20)
+                .padding([.leading, .trailing], 5)
 
 
 
@@ -108,6 +132,7 @@ struct LocListCell: View {
 
                     Text(name)
                         .foregroundColor(.white)
+
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding([.top], 5)
                         .padding(.trailing)
@@ -116,7 +141,7 @@ struct LocListCell: View {
                     HStack {
 
                         Image(systemName: "mappin")
-                            .foregroundColor(.white)
+                            .foregroundColor(.green)
 
                         Text("Lat: \(lat.rounded())")
                             .minimumScaleFactor(0.5)
@@ -129,7 +154,7 @@ struct LocListCell: View {
                     HStack {
 
                         Image(systemName: "mappin")
-                            .foregroundColor(.white)
+                            .foregroundColor(.green)
 
                         Text("Lon: \(lon.rounded())")
                             .minimumScaleFactor(0.5)
@@ -141,5 +166,9 @@ struct LocListCell: View {
                 .padding(.leading)
             }
         }
-    }
+       
+        } .sheet(isPresented: $open, content: {
+            ArrivalInputView(mkRoute: $mkRoute, region: $region)
+        })
+    } 
 }
