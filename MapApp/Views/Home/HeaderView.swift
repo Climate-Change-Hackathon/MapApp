@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-
+import MapKit
 struct HeaderView: View {
     @State var isSearching = false
     @State var search = ""
     @ObservedObject var locationManager = LocationManager()
     @State var show = false
+    @Binding var region: MKCoordinateRegion
     var body: some View {
         
         HStack {
@@ -37,6 +38,10 @@ struct HeaderView: View {
                     isSearching.toggle()
                     if !isSearching {
                         locationManager.buildRoute()
+                        region = locationManager.currentRegion ?? MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
+                            span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
+                        )
                     }
                 }
             }) {

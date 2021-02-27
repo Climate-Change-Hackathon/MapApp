@@ -26,10 +26,9 @@ struct DirectionsView: View {
                 .onAppear() {
                     groupAndRequestDirections()
                 }
-            VStack {
-        ForEach(mapRoutes.last?.steps ?? [], id: \.self) { step in
-            Text(step.instructions)
-                .font(.headline)
+            List {
+        ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
+            DirectionsRow(step: step)
         }
             }
         }

@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
-
+import MapKit
 struct HomeView: View {
     
-    
+    @State  var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
+        span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
+    )
     var body: some View {
         ZStack {
             
-            MapExample()
+            MapExample(region: $region)
                 .ignoresSafeArea()
             VStack {
-                HeaderView()
+                HeaderView(region: $region)
                 Spacer()
             }
         }
