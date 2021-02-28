@@ -15,7 +15,6 @@
 		E145D36A25EB26D200440508 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36925EB26D200440508 /* Report.swift */; };
 		E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36C25EB26DD00440508 /* PlannedCommute.swift */; };
 		E145D37025EB27B400440508 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E145D36F25EB27B400440508 /* GoogleService-Info.plist */; };
-		E145D37425EB37D700440508 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37325EB37D700440508 /* Speech.swift */; };
 		E145D37725EB5FE400440508 /* FootprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37625EB5FE400440508 /* FootprintView.swift */; };
 		E145D37A25EB609700440508 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37925EB609600440508 /* UserData.swift */; };
 		E145D37F25EB6DB100440508 /* FootprintCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37E25EB6DB100440508 /* FootprintCardView.swift */; };
@@ -53,7 +52,6 @@
 		E145D36925EB26D200440508 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		E145D36C25EB26DD00440508 /* PlannedCommute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedCommute.swift; sourceTree = "<group>"; };
 		E145D36F25EB27B400440508 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E145D37325EB37D700440508 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		E145D37625EB5FE400440508 /* FootprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintView.swift; sourceTree = "<group>"; };
 		E145D37925EB609600440508 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E145D37E25EB6DB100440508 /* FootprintCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintCardView.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */,
-				E145D37325EB37D700440508 /* Speech.swift */,
 				E15A653725EA5E180075B15C /* LocationManager.swift */,
 				E145D37925EB609600440508 /* UserData.swift */,
 			);
@@ -394,7 +391,6 @@
 				E119373825EBE5A1000ECCA9 /* ShopView.swift in Sources */,
 				E145D37725EB5FE400440508 /* FootprintView.swift in Sources */,
 				E15A650725E9D67A0075B15C /* ContentView.swift in Sources */,
-				E145D37425EB37D700440508 /* Speech.swift in Sources */,
 				E119374125EBF735000ECCA9 /* RedeemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
