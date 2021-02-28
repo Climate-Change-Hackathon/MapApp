@@ -37,6 +37,8 @@ class LocationManager: NSObject, ObservableObject {
     @Published var show = false
     @Published var route = Route(origin: MKMapItem(), stops: [MKMapItem]())
     @Published var speed = 0.0
+    @Published var currentLocation = CLLocation()
+    @Published var stopLocation = CLLocation()
     var last: CLLocation?
     var statusString: String {
         guard let status = locationStatus else {
@@ -67,12 +69,12 @@ class LocationManager: NSObject, ObservableObject {
       segment = nil
     }
 
-    let stopSegments: [RouteBuilder.Segment] = [
-        search
+        let stopSegments: [RouteBuilder.Segment] = [
+            stopLocation
     ]
     .compactMap { contents in
        let value = contents
-        return .text(value)
+        return .location(value)
       }
     
 
@@ -141,10 +143,11 @@ extension LocationManager: CLLocationManagerDelegate {
         for location in locations {
             processLocation(location)
         }
+       
         guard let firstLocation = locations.first else {
           return
         }
-
+        currentLocation = firstLocation
         let commonDelta: CLLocationDegrees = 25 / 111 // 1/111 = 1 latitude km
         let span = MKCoordinateSpan(latitudeDelta: commonDelta, longitudeDelta: commonDelta)
         let region = MKCoordinateRegion(center: firstLocation.coordinate, span: span)

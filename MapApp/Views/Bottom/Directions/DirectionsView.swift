@@ -20,11 +20,38 @@ struct DirectionsView: View {
     
     @Binding var mkRoute: MKRoute
     @Binding var directions: Bool
+    @State var alreadySaid = [Bool]()
+    @EnvironmentObject var userData: UserData
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground)
+            Color("Light")
                 .onAppear() {
+                    mapRoutes.removeAll()
                     groupAndRequestDirections()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        let route = mapRoutes.last ?? MKRoute()
+                        for i in route.steps.indices  {
+                            alreadySaid.append(false)
+                    }
+                    }
+                    let timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
+                        let route = mapRoutes.last ?? MKRoute()
+                        for i in route.steps.indices {
+                           
+                            if mapRoutes.last?.steps[i].distance ?? 0.0 < 5 {
+                                let isIndexValid = alreadySaid.indices.contains(i)
+                                if isIndexValid {
+                                if !alreadySaid[i] {
+                            SpeechService.shared.speak(text: mapRoutes.last?.steps[i].instructions ?? "") {
+                                alreadySaid[i] = true
+                            }
+                            }
+                                } else {
+                                    alreadySaid.append(false)
+                                }
+                            }
+                        }
+                    }
                 }
             if ((mapRoutes.first?.steps.isEmpty) != nil) {
                 Color(.secondarySystemBackground)
@@ -37,7 +64,7 @@ struct DirectionsView: View {
             }
             
             List {
-        ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
+        ForEach(mapRoutes.last?.steps ?? [], id: \.self) { step in
             DirectionsRow(step: step)
         }
             } .padding(.top, 62)
@@ -99,7 +126,8 @@ struct DirectionsView: View {
         }
         mkRoute = mapRoute
         mapRoutes.append(mapRoute)
-
+        let miles = mkRoute.distance * 0.000621371
+        userData.trees = miles * 8887 / 59.81068991
        
         self.fetchNextRoute()
       }
