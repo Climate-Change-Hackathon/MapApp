@@ -17,7 +17,7 @@ struct BottomView: View {
     @State var resturant = false
     @State var footprint = false
     let columns = [
-            GridItem(.adaptive(minimum: 80)),
+        GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80))
         ]
@@ -29,6 +29,7 @@ struct BottomView: View {
     @EnvironmentObject var userData: UserData
     @State var mapRoutes: [MKRoute] = []
     @State var shop = false
+    @State var redeem = false
     var body: some View {
         ZStack {
             
@@ -243,13 +244,25 @@ struct BottomView: View {
                                 .foregroundColor(Color("Green"))
                         }
                         Spacer()
+                        
+                        Button(action: {
+                            redeem = true
+                        }) {
+                            Image(systemName: "checkmark")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(Color("Green"))
+                        }
+                        
                     } .padding(.horizontal)
                    
                   ShopView()
                         .animation(.none)
                 }
             }
-    }
+    } .sheet(isPresented: $redeem, content: {
+        RedeemView()
+    })
     }
    
 }

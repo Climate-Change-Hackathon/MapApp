@@ -9,6 +9,11 @@ import SwiftUI
 
 struct FootprintView: View {
     @EnvironmentObject var userData: UserData
+    let columns = [
+        GridItem(.adaptive(minimum: 80)),
+        GridItem(.adaptive(minimum: 80)),
+        GridItem(.adaptive(minimum: 80))
+        ]
     var body: some View {
         VStack {
            
@@ -34,6 +39,29 @@ struct FootprintView: View {
                 Spacer()
             }
             }
+            HStack {
+            Text("Your Garden")
+                .foregroundColor(Color("Green"))
+                .font(.headline)
+                .padding()
+                Spacer()
+            } .padding()
+           
+            LazyVGrid(columns: columns, spacing: 20) {
+            Image("tree1")
+                .resizable()
+                .scaledToFit()
+                .padding()
+                Image("tree2")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Image("tree3")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+            }
+            
             Spacer()
         }
     }

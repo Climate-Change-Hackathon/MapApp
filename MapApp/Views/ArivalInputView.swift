@@ -17,6 +17,7 @@ struct ArrivalInputView: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var schedule: Bool
     @State var conflict = false
+    @EnvironmentObject var userData: UserData
     var body: some View {
         ZStack {
         VStack {
@@ -107,6 +108,7 @@ struct ArrivalInputView: View {
                                     try db.collection("plannedCommutes").document(plannedCommute.id).setData(from: plannedCommute)
                                     schedule = false
                                     conflict = false
+                                    userData.carboncoins += 5
                                 } catch {
                                     
                                 }
@@ -120,6 +122,7 @@ struct ArrivalInputView: View {
                             try db.collection("plannedCommutes").document(plannedCommute.id).setData(from: plannedCommute)
                             schedule = false
                             conflict = false
+                            userData.carboncoins += 5
                         } catch {
                             
                         }

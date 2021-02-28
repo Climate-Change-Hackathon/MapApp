@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ShopView: View {
+    @State var redeem = false
     var body: some View {
         ZStack {
             Color("Light")
+            VStack {
+            
         ScrollView {
             ShopCard()
             ShopCard()
             ShopCard()
             ShopCard()
         }
-    }
+            }
+        } 
     }
 }
 
