@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		85676BDD4453A2C245642CBD /* Pods_MapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F46DEB04689AE66CE1B607F /* Pods_MapApp.framework */; };
+		E119373825EBE5A1000ECCA9 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119373725EBE5A1000ECCA9 /* ShopView.swift */; };
+		E119373B25EBE625000ECCA9 /* ShopCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119373A25EBE625000ECCA9 /* ShopCard.swift */; };
+		E119373E25EBF6AF000ECCA9 /* RideShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119373D25EBF6AF000ECCA9 /* RideShare.swift */; };
+		E119374125EBF735000ECCA9 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119374025EBF735000ECCA9 /* RedeemView.swift */; };
 		E145D36A25EB26D200440508 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36925EB26D200440508 /* Report.swift */; };
 		E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36C25EB26DD00440508 /* PlannedCommute.swift */; };
 		E145D37025EB27B400440508 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E145D36F25EB27B400440508 /* GoogleService-Info.plist */; };
@@ -42,6 +46,10 @@
 /* Begin PBXFileReference section */
 		7F46DEB04689AE66CE1B607F /* Pods_MapApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E78279E5EEDC849FD50085A /* Pods-MapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp.debug.xcconfig"; path = "Target Support Files/Pods-MapApp/Pods-MapApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E119373725EBE5A1000ECCA9 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		E119373A25EBE625000ECCA9 /* ShopCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCard.swift; sourceTree = "<group>"; };
+		E119373D25EBF6AF000ECCA9 /* RideShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideShare.swift; sourceTree = "<group>"; };
+		E119374025EBF735000ECCA9 /* RedeemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		E145D36925EB26D200440508 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		E145D36C25EB26DD00440508 /* PlannedCommute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedCommute.swift; sourceTree = "<group>"; };
 		E145D36F25EB27B400440508 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -175,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				E15A652725EA5CE80075B15C /* Route.swift */,
+				E119373D25EBF6AF000ECCA9 /* RideShare.swift */,
 				E145D36925EB26D200440508 /* Report.swift */,
 				E145D36C25EB26DD00440508 /* PlannedCommute.swift */,
 				E15A652A25EA5D070075B15C /* RouteAnnotation.swift */,
@@ -223,7 +232,10 @@
 		E15A655825EAA0A90075B15C /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
+				E119374025EBF735000ECCA9 /* RedeemView.swift */,
 				E1F4E6DE25EB0F5000074E31 /* StoresView.swift */,
+				E119373725EBE5A1000ECCA9 /* ShopView.swift */,
+				E119373A25EBE625000ECCA9 /* ShopCard.swift */,
 				E1F4E6DB25EABF0B00074E31 /* Report */,
 				E15A654525EA7EAE0075B15C /* Directions */,
 				E15A655125EA9F910075B15C /* BottomSheet.swift */,
@@ -368,18 +380,22 @@
 				E15A652825EA5CE80075B15C /* Route.swift in Sources */,
 				E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */,
 				E145D36A25EB26D200440508 /* Report.swift in Sources */,
+				E119373E25EBF6AF000ECCA9 /* RideShare.swift in Sources */,
 				E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */,
 				E15A654B25EA843E0075B15C /* LocList.swift in Sources */,
 				E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */,
+				E119373B25EBE625000ECCA9 /* ShopCard.swift in Sources */,
 				E15A654025EA666A0075B15C /* DirectionsView.swift in Sources */,
 				E1F4E6D925EABF0400074E31 /* ReportView.swift in Sources */,
 				E145D37F25EB6DB100440508 /* FootprintCardView.swift in Sources */,
 				E145D37A25EB609700440508 /* UserData.swift in Sources */,
 				E15A654325EA69E20075B15C /* DirectionRow.swift in Sources */,
 				E15A655625EAA0A60075B15C /* BottomView.swift in Sources */,
+				E119373825EBE5A1000ECCA9 /* ShopView.swift in Sources */,
 				E145D37725EB5FE400440508 /* FootprintView.swift in Sources */,
 				E15A650725E9D67A0075B15C /* ContentView.swift in Sources */,
 				E145D37425EB37D700440508 /* Speech.swift in Sources */,
+				E119374125EBF735000ECCA9 /* RedeemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

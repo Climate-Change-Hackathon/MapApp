@@ -45,11 +45,12 @@ struct LocList: View {
 struct Landmark {
 
     let placemark: MKPlacemark
-    
+
     var id: UUID {
         return UUID()
     }
     var name: String {
+       
         return self.placemark.name ?? ""
     }
     
@@ -80,12 +81,12 @@ struct LocListCell: View {
     var body: some View {
         Button(action: {
             locationManager.stopLocation = CLLocation(latitude: lat, longitude: lon)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            
             locationManager.buildRoute()
                 if !locationManager.route.stops.isEmpty {
                 directions = true
                 }
-            }
+            
         }) {
             
         ZStack {

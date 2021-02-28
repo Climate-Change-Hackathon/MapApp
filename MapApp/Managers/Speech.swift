@@ -33,7 +33,7 @@ class SpeechService: NSObject, AVAudioPlayerDelegate {
             return
         }
         
-        //self.busy = true
+        self.busy = true
         
         DispatchQueue.global(qos: .background).async {
             let postData = self.buildPostData(text: text, voiceType: voiceType)

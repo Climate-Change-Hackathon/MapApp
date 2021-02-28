@@ -27,6 +27,7 @@ struct HeaderView: View {
         ZStack {
         HStack {
             if !isSearching {
+                VStack {
                 ZStack {
                     Circle()
                         .foregroundColor(Color("ExtraLightGreen"))
@@ -34,6 +35,8 @@ struct HeaderView: View {
                     Text(speed.removeZerosFromEnd())
                        
                 } .padding()
+                  
+                }
 //            Button(action: {
 //
 //            }) {

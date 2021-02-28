@@ -21,6 +21,9 @@ final class UserData: ObservableObject {
     
     @Published(key: "trees")
     var trees: Double = 0.0
+    
+    @Published(key: "carboncoins")
+    var carboncoins: Int = 0
  
 }
 

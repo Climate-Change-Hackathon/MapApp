@@ -83,7 +83,21 @@ class LocationManager: NSObject, ObservableObject {
       !stopSegments.isEmpty
       else {
         print("none")
-        return
+        let segment: RouteBuilder.Segment?
+        if let currentLocation = currentPlace?.location {
+          segment = .location(currentLocation)
+        }  else {
+          segment = nil
+        }
+
+            let stopSegments: [RouteBuilder.Segment] = [
+                stopLocation
+        ]
+        .compactMap { contents in
+           let value = contents
+            return .location(value)
+          }
+        return 
     }
 
     RouteBuilder.buildRoute(
