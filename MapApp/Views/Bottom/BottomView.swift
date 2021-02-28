@@ -11,7 +11,7 @@ import MapKit
 struct BottomView: View {
     @Binding var route: Route
     @Binding var mkRoute: MKRoute
-    @State var directions = false
+    @Binding var directions: Bool
     @State var report = false
     @State var store = false
     @State var resturant = false
@@ -125,7 +125,7 @@ struct BottomView: View {
                         Spacer()
                     } .padding(.horizontal)
                    
-                    StoresView(locationManager: locationManager, landmark: $landmark)
+                    StoresView(locationManager: locationManager, landmark: $landmark, directions: $directions)
                         .animation(.none)
                     
                 }
@@ -147,7 +147,7 @@ struct BottomView: View {
                         Spacer()
                     } .padding(.horizontal)
                    
-                    StoresView(search: "Restaurants", locationManager: locationManager, landmark: $landmark)
+                    StoresView(search: "Restaurants", locationManager: locationManager, landmark: $landmark, directions: $directions)
                         .animation(.none)
                 }
                 

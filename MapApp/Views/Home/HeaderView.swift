@@ -22,6 +22,7 @@ struct HeaderView: View {
     @Binding var landmark: Landmark
     @State var schedule = false
     @EnvironmentObject var userData: UserData
+    @Binding var directions: Bool
     var body: some View {
         ZStack {
         HStack {
@@ -58,7 +59,7 @@ struct HeaderView: View {
                             center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
                             span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
                         )
-                        
+                        directions = true
                         typing = false
                     }
                 }
@@ -136,7 +137,7 @@ struct HeaderView: View {
             VStack {
                 HStack {
                     Spacer()
-                    LocList(landmarks: landmarks, locationManager: locationManager, landmark: $landmark)
+                    LocList(landmarks: landmarks, locationManager: locationManager, landmark: $landmark, directions: $directions)
                 .frame(width: 225, height: 300)
                 .cornerRadius(25)
               

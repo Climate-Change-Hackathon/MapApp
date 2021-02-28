@@ -12,13 +12,14 @@ struct StoresView: View {
     @State var search = "Store"
     @ObservedObject var locationManager: LocationManager
     @Binding var landmark: Landmark
+    @Binding var directions: Bool
     var body: some View {
         ZStack {
             Color.clear
                 .onAppear() {
                     getNearbyLoc()
                 }
-            LocList(landmarks: landmarks, locationManager: locationManager, landmark: $landmark)
+            LocList(landmarks: landmarks, locationManager: locationManager, landmark: $landmark, directions: $directions)
         }
     }
     private func getNearbyLoc() {

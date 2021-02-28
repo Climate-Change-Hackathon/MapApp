@@ -14,6 +14,7 @@ struct LocList: View {
     let landmarks: [Landmark]
     @ObservedObject var locationManager: LocationManager
     @Binding var landmark: Landmark
+    @Binding var directions: Bool
     var body: some View {
             
             List {
@@ -23,7 +24,7 @@ struct LocList: View {
                     
                     landmarkLocal: landmark, name: landmark.name,
                     lat: landmark.lat,
-                    lon: landmark.lon, locationManager: locationManager, landmark: $landmark
+                    lon: landmark.lon, locationManager: locationManager, landmark: $landmark, directions: $directions
                 )
                 }
                     .listRowBackground(Color("Light"))
@@ -75,11 +76,15 @@ struct LocListCell: View {
     @ObservedObject var locationManager: LocationManager
     @State var distanceInMiles = 0.0
     @Binding var landmark: Landmark
+    @Binding var directions: Bool
     var body: some View {
         Button(action: {
             locationManager.stopLocation = CLLocation(latitude: lat, longitude: lon)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             locationManager.buildRoute()
+                if !locationManager.route.stops.isEmpty {
+                directions = true
+                }
             }
         }) {
             

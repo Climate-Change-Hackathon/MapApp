@@ -22,6 +22,7 @@ struct HomeView: View {
     @State var landmark: Landmark = Landmark(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)))
     @State var reports = [Report]()
     @EnvironmentObject var userData: UserData
+    @State var directions = false
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -52,7 +53,7 @@ struct HomeView: View {
                     .ignoresSafeArea()
                    
                 VStack {
-                    HeaderView(locationManager: locationManager, region: $region, route: $route, mkRoute: $mkRoute, show: $show, landmark: $landmark)
+                    HeaderView(locationManager: locationManager, region: $region, route: $route, mkRoute: $mkRoute, show: $show, landmark: $landmark, directions: $directions)
                   
                     Spacer()
                    
@@ -61,7 +62,7 @@ struct HomeView: View {
                     isOpen: self.$show,
                     maxHeight: geo.size.height * 0.7
                 ) {
-                    BottomView(route: $locationManager.route, mkRoute: $mkRoute, locationManager: locationManager, landmark: $landmark, reports: $reports)
+                    BottomView(route: $locationManager.route, mkRoute: $mkRoute, directions: $directions, locationManager: locationManager, landmark: $landmark, reports: $reports)
                 }.edgesIgnoringSafeArea(.all)
             }
         }
