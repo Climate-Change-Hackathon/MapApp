@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85676BDD4453A2C245642CBD /* Pods_MapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F46DEB04689AE66CE1B607F /* Pods_MapApp.framework */; };
+		E145D36A25EB26D200440508 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36925EB26D200440508 /* Report.swift */; };
+		E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36C25EB26DD00440508 /* PlannedCommute.swift */; };
+		E145D37025EB27B400440508 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E145D36F25EB27B400440508 /* GoogleService-Info.plist */; };
 		E15A650325E9D6790075B15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650225E9D6790075B15C /* AppDelegate.swift */; };
 		E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650425E9D67A0075B15C /* SceneDelegate.swift */; };
 		E15A650725E9D67A0075B15C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650625E9D67A0075B15C /* ContentView.swift */; };
@@ -32,6 +36,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F46DEB04689AE66CE1B607F /* Pods_MapApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E78279E5EEDC849FD50085A /* Pods-MapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp.debug.xcconfig"; path = "Target Support Files/Pods-MapApp/Pods-MapApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E145D36925EB26D200440508 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		E145D36C25EB26DD00440508 /* PlannedCommute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedCommute.swift; sourceTree = "<group>"; };
+		E145D36F25EB27B400440508 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E15A64FF25E9D6790075B15C /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15A650225E9D6790075B15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E15A650425E9D67A0075B15C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +65,7 @@
 		E15A655525EAA0A60075B15C /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		E1F4E6D825EABF0400074E31 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		E1F4E6DE25EB0F5000074E31 /* StoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
+		F286C0CF0DEB1A8BE153F3FE /* Pods-MapApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapApp.release.xcconfig"; path = "Target Support Files/Pods-MapApp/Pods-MapApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +73,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85676BDD4453A2C245642CBD /* Pods_MapApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13C9B480E9F50BBA12E4E9FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E78279E5EEDC849FD50085A /* Pods-MapApp.debug.xcconfig */,
+				F286C0CF0DEB1A8BE153F3FE /* Pods-MapApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		362B7BB5F16600201808B9D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F46DEB04689AE66CE1B607F /* Pods_MapApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E15A64F625E9D6790075B15C = {
 			isa = PBXGroup;
 			children = (
 				E15A650125E9D6790075B15C /* MapApp */,
 				E15A650025E9D6790075B15C /* Products */,
+				13C9B480E9F50BBA12E4E9FE /* Pods */,
+				362B7BB5F16600201808B9D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,7 +120,7 @@
 			children = (
 				E15A650225E9D6790075B15C /* AppDelegate.swift */,
 				E15A650425E9D67A0075B15C /* SceneDelegate.swift */,
-				E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */,
+				E145D36F25EB27B400440508 /* GoogleService-Info.plist */,
 				E15A653A25EA5E1F0075B15C /* Managers */,
 				E15A653525EA5D740075B15C /* Extensions */,
 				E15A652D25EA5D0C0075B15C /* Model */,
@@ -127,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				E15A652725EA5CE80075B15C /* Route.swift */,
+				E145D36925EB26D200440508 /* Report.swift */,
+				E145D36C25EB26DD00440508 /* PlannedCommute.swift */,
 				E15A652A25EA5D070075B15C /* RouteAnnotation.swift */,
 			);
 			path = Model;
@@ -143,6 +175,7 @@
 		E15A653A25EA5E1F0075B15C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */,
 				E15A653725EA5E180075B15C /* LocationManager.swift */,
 			);
 			path = Managers;
@@ -194,17 +227,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E15A651325E9D67C0075B15C /* Build configuration list for PBXNativeTarget "MapApp" */;
 			buildPhases = (
+				B2D8F64673CC3A993D75A6E2 /* [CP] Check Pods Manifest.lock */,
 				E15A64FB25E9D6790075B15C /* Sources */,
 				E15A64FC25E9D6790075B15C /* Frameworks */,
 				E15A64FD25E9D6790075B15C /* Resources */,
+				27B1C3163A102A4BBBF259F0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MapApp;
-			packageProductDependencies = (
-			);
 			productName = MapApp;
 			productReference = E15A64FF25E9D6790075B15C /* MapApp.app */;
 			productType = "com.apple.product-type.application";
@@ -232,8 +265,6 @@
 				Base,
 			);
 			mainGroup = E15A64F625E9D6790075B15C;
-			packageReferences = (
-			);
 			productRefGroup = E15A650025E9D6790075B15C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -249,12 +280,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				E15A650F25E9D67C0075B15C /* LaunchScreen.storyboard in Resources */,
+				E145D37025EB27B400440508 /* GoogleService-Info.plist in Resources */,
 				E15A650C25E9D67C0075B15C /* Preview Assets.xcassets in Resources */,
 				E15A650925E9D67C0075B15C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27B1C3163A102A4BBBF259F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapApp/Pods-MapApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapApp/Pods-MapApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapApp/Pods-MapApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2D8F64673CC3A993D75A6E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MapApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E15A64FB25E9D6790075B15C /* Sources */ = {
@@ -272,6 +346,8 @@
 				E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */,
 				E1F4E6DF25EB0F5100074E31 /* StoresView.swift in Sources */,
 				E15A652825EA5CE80075B15C /* Route.swift in Sources */,
+				E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */,
+				E145D36A25EB26D200440508 /* Report.swift in Sources */,
 				E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */,
 				E15A654B25EA843E0075B15C /* LocList.swift in Sources */,
 				E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */,
@@ -415,6 +491,7 @@
 		};
 		E15A651425E9D67C0075B15C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E78279E5EEDC849FD50085A /* Pods-MapApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -436,6 +513,7 @@
 		};
 		E15A651525E9D67C0075B15C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F286C0CF0DEB1A8BE153F3FE /* Pods-MapApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

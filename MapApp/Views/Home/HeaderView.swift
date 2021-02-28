@@ -20,6 +20,7 @@ struct HeaderView: View {
     @State private var landmarks: [Landmark] = [Landmark]()
     @State var speed = 0.0
     @Binding var landmark: Landmark
+    @State var schedule = false
     var body: some View {
         ZStack {
         HStack {
@@ -108,7 +109,7 @@ struct HeaderView: View {
             } else {
                
                 Button(action: {
-
+                    schedule = true
                 }) {
                     ZStack {
 
@@ -125,7 +126,9 @@ struct HeaderView: View {
              
             }
         }
-           
+        .sheet(isPresented: $schedule, content: {
+            ArrivalInputView(mkRoute: $mkRoute, region: $region)
+        })
     }
         if typing {
             VStack {
@@ -139,6 +142,7 @@ struct HeaderView: View {
                 Spacer()
             } .padding()
         }
+    
         
     }
     private func getNearbyLoc() {

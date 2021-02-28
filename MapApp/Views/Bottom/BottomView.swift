@@ -79,7 +79,9 @@ struct BottomView: View {
                             }
                         }
                         Button(action: {
+                            withAnimation(.easeInOut) {
                             report = true
+                            }
                         }) {
                             VStack {
                             ZStack {
