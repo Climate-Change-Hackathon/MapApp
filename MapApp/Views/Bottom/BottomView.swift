@@ -15,6 +15,7 @@ struct BottomView: View {
     @State var report = false
     @State var store = false
     @State var resturant = false
+    @State var footprint = false
     let columns = [
             GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80)),
@@ -25,6 +26,7 @@ struct BottomView: View {
     @ObservedObject var locationManager: LocationManager
     @Binding var landmark: Landmark
     @Binding var reports: [Report]
+    @EnvironmentObject var userData: UserData
     var body: some View {
         ZStack {
             
@@ -98,12 +100,27 @@ struct BottomView: View {
                             }
                         
                       }
+                        Button(action: {
+                            withAnimation(.easeInOut) {
+                            footprint = true
+                            }
+                        }) {
+                            VStack {
+                            ZStack {
+                            Circle()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(Color("ExtraLightGreen"))
+                                Image(systemName: "leaf")
+                                    .foregroundColor(Color("Green"))
+                        }
+                                Text("Impact")
+                                    .font(.headline)
+                                    .foregroundColor(Color("LightGreen"))
+                            }
+                        
+                      }
             }
-        if directions {
-            Color("Light")
-            DirectionsView(route: $route, mkRoute: $mkRoute, directions: $directions)
-                .animation(.none)
-        }
+       
             if report {
                 Color("Light")
                 ReportView(report: $report, locationManager: locationManager, reports: $reports)
@@ -151,6 +168,32 @@ struct BottomView: View {
                         .animation(.none)
                 }
                 
+            }
+            if footprint {
+                Color("Light")
+                VStack {
+                   
+                    HStack {
+                      
+                        Button(action: {
+                            footprint = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(Color("Green"))
+                        }
+                        Spacer()
+                    } .padding(.horizontal)
+                   
+                  FootprintView()
+                        .animation(.none)
+                }
+            }
+            if directions {
+                Color("Light")
+                DirectionsView(route: $route, mkRoute: $mkRoute, directions: $directions)
+                    .animation(.none)
             }
     }
     }

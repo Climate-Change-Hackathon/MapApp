@@ -68,10 +68,12 @@ struct MapView: UIViewRepresentable {
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
         for report in reports {
+            if report.date.addingTimeInterval(60 * 60) > Date() {
         let london = MKPointAnnotation()
             london.title = report.type
             london.coordinate = CLLocationCoordinate2D(latitude: report.location.latitude, longitude: report.location.longitude)
         mapView.addAnnotation(london)
+            }
         }
         if route.name != "" {
         mapView.addOverlay(route.polyline)
