@@ -28,12 +28,45 @@ struct BottomView: View {
     @Binding var reports: [Report]
     @EnvironmentObject var userData: UserData
     @State var mapRoutes: [MKRoute] = []
+    @State var shop = false
     var body: some View {
         ZStack {
             
-        
-                      LazyVGrid(columns: columns, spacing: 20) {
+            VStack {
+                Button(action: {
+                    shop = true
+                }) {
+                    VStack {
+                ZStack {
+                    Circle()
+                        .foregroundColor(Color("ExtraLightGreen"))
+                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    HStack {
+                        Image("carboncoin")
+                            .resizable()
+                            .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                           
+                        Text("\(userData.carboncoins)")
+                            .font(.footnote)
+                            
                         
+                    }
+                }
+                        Text("Carbon Coins")
+                            .foregroundColor(Color("LightGreen"))
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            
+                        
+                }
+                       
+                } .padding()
+            Divider()
+                .background(Color("LightGreen"))
+                
+                .padding(.vertical)
+                      LazyVGrid(columns: columns, spacing: 20) {
+                      
                         Button(action: {
                             directions = true
                         }) {
@@ -121,7 +154,7 @@ struct BottomView: View {
                         
                       }
             }
-       
+            }
             if report {
                 Color("Light")
                 ReportView(report: $report, locationManager: locationManager, reports: $reports)

@@ -81,12 +81,12 @@ struct LocListCell: View {
     var body: some View {
         Button(action: {
             locationManager.stopLocation = CLLocation(latitude: lat, longitude: lon)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            
             locationManager.buildRoute()
                 if !locationManager.route.stops.isEmpty {
                 directions = true
                 }
-            }
+            
         }) {
             
         ZStack {
