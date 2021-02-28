@@ -15,10 +15,9 @@ struct ShopView: View {
             VStack {
             
         ScrollView {
-            ShopCard()
-            ShopCard()
-            ShopCard()
-            ShopCard()
+            ShopCard(image: "t", text: "T-Shirt")
+            ShopCard(image: "hat", text: "Baseball hat")
+          
         }
             }
         } 

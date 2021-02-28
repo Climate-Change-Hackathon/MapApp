@@ -49,6 +49,7 @@ struct BottomView: View {
                            
                         Text("\(userData.carboncoins)")
                             .font(.footnote)
+                            .foregroundColor(.white)
                             
                         
                     }

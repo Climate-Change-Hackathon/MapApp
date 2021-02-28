@@ -15,13 +15,26 @@ struct ShopCard: View {
             VStack {
             HStack {
        Image(image)
-           
+        .resizable()
+        .scaledToFit()
+        .padding()
                 Spacer()
                
                 Text(text)
+                    .bold()
                     .multilineTextAlignment(.leading)
-                  
+                    .font(.title)
+                    .foregroundColor(Color("Green"))
+                    .padding()
+                   
             } .padding()
+                VStack {
+                    HStack {
+                        Spacer()
+                    Text("1000 Carbon Coins")
+                        .foregroundColor(Color("LightGreen"))
+                        .font(.footnote)
+                    } .padding(.horizontal)
                 HStack {
                     Spacer()
                     Button(action: {
@@ -29,8 +42,10 @@ struct ShopCard: View {
                     }) {
                         Text("Buy")
                             .foregroundColor(Color("LightGreen"))
+                            .bold()
                     }
                 } .padding()
+                }
         }
         }
     }
