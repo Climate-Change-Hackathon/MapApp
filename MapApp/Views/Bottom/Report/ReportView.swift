@@ -7,17 +7,18 @@
 
 import SwiftUI
 import MapKit
-
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 struct ReportView: View {
    
     @Binding var report: Bool
-    
+    @ObservedObject var locationManager: LocationManager
     let columns = [
         GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80))
         ]
-  
+    @Binding var reports: [Report]
     var body: some View {
         ZStack {
             Color(.secondarySystemBackground)
@@ -25,7 +26,7 @@ struct ReportView: View {
                       LazyVGrid(columns: columns, spacing: 20) {
                         
                         Button(action: {
-                            
+                            report(type: "Traffic")
                         }) {
                             VStack {
                             ZStack {
@@ -41,7 +42,7 @@ struct ReportView: View {
                             }
                         }
                         Button(action: {
-                            
+                            report(type: "Police")
                         }) {
                             VStack {
                             ZStack {
@@ -57,7 +58,7 @@ struct ReportView: View {
                             }
                         }
                         Button(action: {
-                            
+                            report(type: "Eco-Friendly")
                         }) {
                             VStack {
                             ZStack {
@@ -73,7 +74,7 @@ struct ReportView: View {
                             }
                         }
                         Button(action: {
-                            
+                            report(type: "Hazard")
                         }) {
                             VStack {
                             ZStack {
@@ -108,4 +109,17 @@ struct ReportView: View {
             } .padding()
     }
     }
-}
+    func report(type: String) {
+        let db = Firestore.firestore()
+        
+        do{
+            let report = Report(id: locationManager.currentLocation.coordinate.longitude.removeZerosFromEnd(), type: type, date: Date(), location: GeoPoint(latitude: Double(locationManager.currentLocation.coordinate.latitude), longitude: Double(locationManager.currentLocation.coordinate.longitude)))
+            try db.collection("reports").document(locationManager.currentRegion?.center.latitude.removeZerosFromEnd() ?? "").setData(from: report)
+            reports.append(report)
+            
+        } catch {
+            
+        }
+    }
+    }
+

@@ -19,6 +19,7 @@ struct HomeView: View {
     @State var show = false
     @State var speed = 0.0
     @State var landmark: Landmark = Landmark(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)))
+    @State var reports = [Report]()
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -31,7 +32,7 @@ struct HomeView: View {
                             span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
                         }
                     }
-                MapView(region: $region, route: $mkRoute)
+                MapView(region: $region, route: $mkRoute, reports: $reports)
                     .ignoresSafeArea()
                    
                 VStack {
@@ -44,7 +45,7 @@ struct HomeView: View {
                     isOpen: self.$show,
                     maxHeight: geo.size.height * 0.7
                 ) {
-                    BottomView(route: $locationManager.route, mkRoute: $mkRoute, locationManager: locationManager, landmark: $landmark)
+                    BottomView(route: $locationManager.route, mkRoute: $mkRoute, locationManager: locationManager, landmark: $landmark, reports: $reports)
                 }.edgesIgnoringSafeArea(.all)
             }
         }

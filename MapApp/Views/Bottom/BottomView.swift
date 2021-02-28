@@ -24,6 +24,7 @@ struct BottomView: View {
     @State private var landmarks: [Landmark] = [Landmark]()
     @ObservedObject var locationManager: LocationManager
     @Binding var landmark: Landmark
+    @Binding var reports: [Report]
     var body: some View {
         ZStack {
             
@@ -105,7 +106,7 @@ struct BottomView: View {
         }
             if report {
                 Color("Light")
-                ReportView(report: $report)
+                ReportView(report: $report, locationManager: locationManager, reports: $reports)
             }
             if store {
                 Color("Light")

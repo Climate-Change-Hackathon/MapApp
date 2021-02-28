@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 struct Report: Identifiable, Codable, Equatable {
-    var id: UUID
+    var id: String
     var type: String
     var date: Date
     var location: GeoPoint

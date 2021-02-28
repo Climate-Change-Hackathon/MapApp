@@ -40,12 +40,13 @@ struct MapExample: View {
 struct MapView: UIViewRepresentable {
     @Binding var region: MKCoordinateRegion
     @Binding var route: MKRoute
-    
+    @Binding var reports: [Report]
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
 
         init(_ parent: MapView) {
             self.parent = parent
+           
         }
 
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -66,10 +67,31 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
+        for report in reports {
+        let london = MKPointAnnotation()
+            london.title = report.type
+            london.coordinate = CLLocationCoordinate2D(latitude: report.location.latitude, longitude: report.location.longitude)
+        mapView.addAnnotation(london)
+        }
         if route.name != "" {
         mapView.addOverlay(route.polyline)
         }
         mapView.delegate = context.coordinator
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+
+        return annotationView
     }
 }
