@@ -63,7 +63,6 @@ struct BottomView: View {
                 } .padding()
             Divider()
                 .background(Color("LightGreen"))
-                
                 .padding(.vertical)
                       LazyVGrid(columns: columns, spacing: 20) {
                       
@@ -228,6 +227,27 @@ struct BottomView: View {
                 Color("Light")
                 DirectionsView(route: $route, mapRoutes: $mapRoutes, mkRoute: $mkRoute, directions: $directions)
                     .animation(.none)
+            }
+            if shop {
+                Color("Light")
+                VStack {
+                   
+                    HStack {
+                      
+                        Button(action: {
+                            shop = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(Color("Green"))
+                        }
+                        Spacer()
+                    } .padding(.horizontal)
+                   
+                  ShopView()
+                        .animation(.none)
+                }
             }
     }
     }
