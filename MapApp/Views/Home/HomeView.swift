@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-import BottomSheet
+
 struct HomeView: View {
     
     @State var region = MKCoordinateRegion(
@@ -18,30 +18,25 @@ struct HomeView: View {
     @State var mkRoute = MKRoute()
     @State var show = false
     @State var speed = 0.0
+    @State var landmark: Landmark = Landmark(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)))
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                
-                MapView(region: $region, route: $mkRoute)
-                    .ignoresSafeArea()
+                Color.clear
+                    
                     .onAppear() {
-                        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-                            speed = Double(locationManager.speed).rounded(toPlaces: 0)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        region = locationManager.currentRegion ?? MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
+                            span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
                         }
                     }
+                MapView(region: $region, route: $mkRoute)
+                    .ignoresSafeArea()
+                   
                 VStack {
-                    HeaderView(locationManager: locationManager, region: $region, route: $route, mkRoute: $mkRoute, show: $show)
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .foregroundColor(Color("ExtraLightGreen"))
-                                .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            Text(speed.removeZerosFromEnd())
-                               
-                        }
-                        
-                        Spacer()
-                    } .padding()
+                    HeaderView(locationManager: locationManager, region: $region, route: $route, mkRoute: $mkRoute, show: $show, landmark: $landmark)
+                  
                     Spacer()
                    
                 }
@@ -49,7 +44,7 @@ struct HomeView: View {
                     isOpen: self.$show,
                     maxHeight: geo.size.height * 0.7
                 ) {
-                    BottomView(route: $locationManager.route, mkRoute: $mkRoute)
+                    BottomView(route: $locationManager.route, mkRoute: $mkRoute, locationManager: locationManager, landmark: $landmark)
                 }.edgesIgnoringSafeArea(.all)
             }
         }

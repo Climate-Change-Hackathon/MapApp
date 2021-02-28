@@ -17,24 +17,34 @@ struct HeaderView: View {
     @Binding var mkRoute: MKRoute
     @State var typing = false
     @Binding var show: Bool
+    @State private var landmarks: [Landmark] = [Landmark]()
+    @State var speed = 0.0
+    @Binding var landmark: Landmark
     var body: some View {
         ZStack {
         HStack {
             if !isSearching {
-            Button(action: {
-                
-            }) {
                 ZStack {
-                    
                     Circle()
-                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .foregroundColor(Color("ExtraLightGreen"))
-                        .opacity(0.8)
-                    Image(systemName: "sidebar.left")
-                        .foregroundColor(Color("Green"))
-                        .font(.headline)
-                }
-            }   .padding()
+                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Text(speed.removeZerosFromEnd())
+                       
+                } .padding()
+//            Button(action: {
+//
+//            }) {
+//                ZStack {
+//                    
+//                    Circle()
+//                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                        .foregroundColor(Color("ExtraLightGreen"))
+//                        .opacity(0.8)
+//                    Image(systemName: "sidebar.left")
+//                        .foregroundColor(Color("Green"))
+//                        .font(.headline)
+//                }
+//            }   .padding()
             Spacer()
             }
             Button(action: {
@@ -77,7 +87,12 @@ struct HeaderView: View {
                                    
                                    typing = true
                                    if search == "" { typing.toggle() }
+                    DispatchQueue.main.async {
+                                           self.getNearbyLoc()
+                                       }
+                    
                                })
+                
                 .onChange(of: locationManager.route.label, perform: { value in
                      route = locationManager.route
                 })
@@ -85,17 +100,23 @@ struct HeaderView: View {
                 .onChange(of: locationManager.show, perform: { value in
                      show = locationManager.show
                 })
+                .onAppear() {
+                    let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                        speed = Double(locationManager.speed).rounded(toPlaces: 0)
+                    }
+                }
             } else {
+               
                 Button(action: {
-                    
+
                 }) {
                     ZStack {
-                        
+
                         Circle()
                             .frame(width: 40, height: 40, alignment: .center)
                             .foregroundColor(Color("ExtraLightGreen"))
                             .opacity(0.8)
-                        Image(systemName: "gear")
+                        Image(systemName: "clock")
                             .foregroundColor(Color("Green"))
                             .font(.headline)
                             .padding()
@@ -110,7 +131,7 @@ struct HeaderView: View {
             VStack {
                 HStack {
                     Spacer()
-            LocList(region: $region, route: $route, mkRoute: $mkRoute)
+                    LocList(landmarks: landmarks, locationManager: locationManager, landmark: $landmark)
                 .frame(width: 225, height: 300)
                 .cornerRadius(25)
               
@@ -118,6 +139,26 @@ struct HeaderView: View {
                 Spacer()
             } .padding()
         }
-    }}
+        
+    }
+    private func getNearbyLoc() {
+           
+           let request = MKLocalSearch.Request()
+           request.naturalLanguageQuery = search
+        request.region = locationManager.currentRegion ?? MKCoordinateRegion(MKMapRect(x: 0, y: 0, width: 0, height: 0))
+           let search = MKLocalSearch(request: request)
+           search.start { (response, error) in
+               
+               if let response = response {
+                   
+                   let mapItems = response.mapItems
+                   
+                   self.landmarks = mapItems.map {
+                       Landmark(placemark: $0.placemark)
+                   }
+               }
+           }
+}
+}
 
 

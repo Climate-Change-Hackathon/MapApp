@@ -50,8 +50,9 @@ struct MapView: UIViewRepresentable {
 
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = .blue
+            renderer.strokeColor = .green
             renderer.lineWidth = 4
+            
             return renderer
         }
     }
@@ -69,6 +70,6 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlay(route.polyline)
         }
         mapView.delegate = context.coordinator
-        
+        mapView.setRegion(mapView.regionThatFits(region), animated: true)
     }
 }

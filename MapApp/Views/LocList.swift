@@ -7,50 +7,87 @@
 import SwiftUI
 import MapKit
 
+
+// MARK: - Location List View
 struct LocList: View {
-    @Binding var region: MKCoordinateRegion
-    @Binding var route: Route
-    @Binding var mkRoute: MKRoute
+    
+    let landmarks: [Landmark]
+    @ObservedObject var locationManager: LocationManager
+    @Binding var landmark: Landmark
     var body: some View {
-        
-        ScrollView(showsIndicators: false) {
             
-            LazyVStack {
+            List {
                 
-                ForEach(0..<10) {_ in LocListCell(region: $region, route: $route, mkRoute: $mkRoute) }
+                ForEach(self.landmarks, id: \.id) { landmark in LocListCell(
+                    
+                    landmarkLocal: landmark, name: landmark.name,
+                    lat: landmark.lat,
+                    lon: landmark.lon, locationManager: locationManager, landmark: $landmark
+                )
+                }
                     .listRowBackground(Color("Light"))
                     .opacity(0.8)
             }
-        }
+            
         .background(Color("Light"))
-        .opacity(0.8)
+        
         .edgesIgnoringSafeArea([.bottom])
     }
-    
 }
 
 
-struct LocListCell: View {
-@State var open = false
-    @Binding var region: MKCoordinateRegion
-    @Binding var route: Route
-    @Binding var mkRoute: MKRoute
-    var body: some View {
 
+
+
+// MARK: - Landmark Model
+struct Landmark {
+
+    let placemark: MKPlacemark
+    
+    var id: UUID {
+        return UUID()
+    }
+    var name: String {
+        return self.placemark.name ?? ""
+    }
+    
+    var lat: Double {
+        return self.placemark.coordinate.latitude
+    }
+    
+    var lon: Double {
+        return self.placemark.coordinate.longitude
+    }
+}
+
+
+
+
+
+
+// MARK: - Location List Cell
+struct LocListCell: View {
+    @State var landmarkLocal: Landmark
+    @State var name: String
+    @State var lat: Double
+    @State var lon: Double
+    @ObservedObject var locationManager: LocationManager
+    @State var distanceInMiles = 0.0
+    @Binding var landmark: Landmark
+    var body: some View {
         Button(action: {
-            open = true
+            locationManager.stopLocation = CLLocation(latitude: lat, longitude: lon)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            locationManager.buildRoute()
+            }
         }) {
             
-        
         ZStack {
-
-            Rectangle()
-                .fill(Color("ExtraLightGreen"))
-                .frame(width: 260, height: 80, alignment: .center)
-                .cornerRadius(20)
-                .padding([.leading, .trailing], 5)
-
-
+            Color(.clear)
+                .onAppear() {
+                    let distanceInMeters = locationManager.currentLocation.distance(from: CLLocation(latitude: lat, longitude: lon))
+                    distanceInMiles = distanceInMeters*0.000621
+                }
             HStack {
 
                 ZStack {
@@ -62,62 +99,35 @@ struct LocListCell: View {
 
                     VStack {
 
-                        Text("1.4")
+                        Text(distanceInMiles.rounded(toPlaces: 1).removeZerosFromEnd())
                             .minimumScaleFactor(0.5)
                             .foregroundColor(.white)
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .font(.subheadline)
 
 
-                        Text("km")
+                        Text("Mi")
                             .minimumScaleFactor(0.5)
                             .foregroundColor(.white)
-
+                            .font(.subheadline)
+     
                     }
                 }
-                .padding(.trailing)
+               
+Spacer()
+
+                VStack(alignment: .leading) {
+
+                    Text(name)
+                        .foregroundColor(Color("Green"))
+                        .font(.headline)
+                        .multilineTextAlignment(.trailing)
 
 
-                VStack {
-
-                    Text("Tattoine")
-                        .foregroundColor(.black)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .padding([.top], 5)
-                        .padding(.trailing)
-
-
-                    HStack {
-
-                        Image(systemName: "mappin")
-                            .foregroundColor(.green)
-
-                        Text("Lat: 23.88")
-                            .minimumScaleFactor(0.5)
-                            .foregroundColor(.green)
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .padding(.bottom, 5)
-                    }
-
-
-                    HStack {
-
-                        Image(systemName: "mappin")
-                            .foregroundColor(.green)
-
-                        Text("Lon: 90.45")
-                            .minimumScaleFactor(0.5)
-                            .foregroundColor(.green)
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .padding(.bottom, 5)
-                    }
+                   
                 }
-                .padding(.leading)
+             
             }
         }
-       
-        } .sheet(isPresented: $open, content: {
-            ArrivalInputView(mkRoute: $mkRoute, region: $region)
-        })
-    } 
+        }
+    }
 }
-

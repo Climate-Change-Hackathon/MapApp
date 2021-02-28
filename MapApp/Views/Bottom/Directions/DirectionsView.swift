@@ -22,8 +22,9 @@ struct DirectionsView: View {
     @Binding var directions: Bool
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground)
+            Color("Light")
                 .onAppear() {
+                    mapRoutes.removeAll()
                     groupAndRequestDirections()
                 }
             if ((mapRoutes.first?.steps.isEmpty) != nil) {
@@ -37,7 +38,7 @@ struct DirectionsView: View {
             }
             
             List {
-        ForEach(mapRoutes.first?.steps ?? [], id: \.self) { step in
+        ForEach(mapRoutes.last?.steps ?? [], id: \.self) { step in
             DirectionsRow(step: step)
         }
             } .padding(.top, 62)

@@ -28,6 +28,7 @@
 		E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A655125EA9F910075B15C /* BottomSheet.swift */; };
 		E15A655625EAA0A60075B15C /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A655525EAA0A60075B15C /* BottomView.swift */; };
 		E1F4E6D925EABF0400074E31 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E6D825EABF0400074E31 /* ReportView.swift */; };
+		E1F4E6DF25EB0F5100074E31 /* StoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4E6DE25EB0F5000074E31 /* StoresView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		E15A655125EA9F910075B15C /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		E15A655525EAA0A60075B15C /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		E1F4E6D825EABF0400074E31 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		E1F4E6DE25EB0F5000074E31 /* StoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		E15A655825EAA0A90075B15C /* Bottom */ = {
 			isa = PBXGroup;
 			children = (
+				E1F4E6DE25EB0F5000074E31 /* StoresView.swift */,
 				E1F4E6DB25EABF0B00074E31 /* Report */,
 				E15A654525EA7EAE0075B15C /* Directions */,
 				E15A655125EA9F910075B15C /* BottomSheet.swift */,
@@ -267,6 +270,7 @@
 				E15A652125E9DD330075B15C /* MapView.swift in Sources */,
 				E15A653325EA5D3E0075B15C /* Extensions.swift in Sources */,
 				E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */,
+				E1F4E6DF25EB0F5100074E31 /* StoresView.swift in Sources */,
 				E15A652825EA5CE80075B15C /* Route.swift in Sources */,
 				E15A655225EA9F910075B15C /* BottomSheet.swift in Sources */,
 				E15A654B25EA843E0075B15C /* LocList.swift in Sources */,

@@ -13,14 +13,20 @@ struct BottomView: View {
     @Binding var mkRoute: MKRoute
     @State var directions = false
     @State var report = false
+    @State var store = false
+    @State var resturant = false
     let columns = [
             GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80)),
         GridItem(.adaptive(minimum: 80))
         ]
-  
+  @State var search = ""
+    @State private var landmarks: [Landmark] = [Landmark]()
+    @ObservedObject var locationManager: LocationManager
+    @Binding var landmark: Landmark
     var body: some View {
         ZStack {
+            
         
                       LazyVGrid(columns: columns, spacing: 20) {
                         
@@ -41,7 +47,7 @@ struct BottomView: View {
                             }
                         }
                         Button(action: {
-                            
+                            resturant = true
                         }) {
                             VStack {
                             ZStack {
@@ -57,7 +63,7 @@ struct BottomView: View {
                             }
                         }
                         Button(action: {
-                            
+                            store = true
                         }) {
                             VStack {
                             ZStack {
@@ -91,11 +97,59 @@ struct BottomView: View {
                       }
             }
         if directions {
+            Color("Light")
             DirectionsView(route: $route, mkRoute: $mkRoute, directions: $directions)
+                .animation(.none)
         }
             if report {
+                Color("Light")
                 ReportView(report: $report)
+            }
+            if store {
+                Color("Light")
+                VStack {
+                   
+                    HStack {
+                      
+                        Button(action: {
+                            store = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(Color("Green"))
+                        }
+                        Spacer()
+                    } .padding(.horizontal)
+                   
+                    StoresView(locationManager: locationManager, landmark: $landmark)
+                        .animation(.none)
+                    
+                }
+            }
+            if resturant {
+                Color("Light")
+                VStack {
+                   
+                    HStack {
+                      
+                        Button(action: {
+                            resturant = false
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.headline)
+                                .padding()
+                                .foregroundColor(Color("Green"))
+                        }
+                        Spacer()
+                    } .padding(.horizontal)
+                   
+                    StoresView(search: "Restaurants", locationManager: locationManager, landmark: $landmark)
+                        .animation(.none)
+                }
+                
             }
     }
     }
+   
 }
