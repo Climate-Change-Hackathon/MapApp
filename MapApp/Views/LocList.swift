@@ -45,11 +45,12 @@ struct LocList: View {
 struct Landmark {
 
     let placemark: MKPlacemark
-    
+
     var id: UUID {
         return UUID()
     }
     var name: String {
+       
         return self.placemark.name ?? ""
     }
     

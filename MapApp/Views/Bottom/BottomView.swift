@@ -27,6 +27,7 @@ struct BottomView: View {
     @Binding var landmark: Landmark
     @Binding var reports: [Report]
     @EnvironmentObject var userData: UserData
+    @State var mapRoutes: [MKRoute] = []
     var body: some View {
         ZStack {
             
@@ -192,7 +193,7 @@ struct BottomView: View {
             }
             if directions {
                 Color("Light")
-                DirectionsView(route: $route, mkRoute: $mkRoute, directions: $directions)
+                DirectionsView(route: $route, mapRoutes: $mapRoutes, mkRoute: $mkRoute, directions: $directions)
                     .animation(.none)
             }
     }

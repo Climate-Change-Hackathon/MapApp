@@ -113,7 +113,16 @@ struct ArrivalInputView: View {
                                 }
                         
                     } else {
-                        
+                        do {
+                            plannedCommute.date.append(arrivalDate)
+                                
+                           
+                            try db.collection("plannedCommutes").document(plannedCommute.id).setData(from: plannedCommute)
+                            schedule = false
+                            conflict = false
+                        } catch {
+                            
+                        }
                         print("Document does not exist")
                         
                     }

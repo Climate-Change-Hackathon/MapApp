@@ -12,7 +12,7 @@ import CoreLocation
 struct DirectionsView: View {
     @Binding var route: Route
 
-    @State var mapRoutes: [MKRoute] = []
+    @Binding var mapRoutes: [MKRoute] 
     @State var totalTravelTime: TimeInterval = 0
     @State var totalDistance: CLLocationDistance = 0
 
@@ -21,18 +21,21 @@ struct DirectionsView: View {
     @Binding var mkRoute: MKRoute
     @Binding var directions: Bool
     @State var alreadySaid = [Bool]()
+    @State var ready = false
     @EnvironmentObject var userData: UserData
     var body: some View {
         ZStack {
             Color("Light")
                 .onAppear() {
-                    mapRoutes.removeAll()
+                    
+                    if mapRoutes.isEmpty {
                     groupAndRequestDirections()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    }
+                   
                         let route = mapRoutes.last ?? MKRoute()
                         for i in route.steps.indices  {
                             alreadySaid.append(false)
-                    }
+                    
                     }
                     let timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
                         let route = mapRoutes.last ?? MKRoute()
@@ -50,10 +53,12 @@ struct DirectionsView: View {
                                     alreadySaid.append(false)
                                 }
                             }
-                        }
+                        
                     }
+                    }
+                    print(mapRoutes.last?.steps)
                 }
-            if ((mapRoutes.first?.steps.isEmpty) != nil) {
+            if ((mapRoutes.last?.steps.isEmpty) != nil) {
                 Color(.secondarySystemBackground)
                 Text("Pick a route to display directions")
                     .font(.title)
@@ -62,13 +67,15 @@ struct DirectionsView: View {
                     .padding()
                
             }
-            
+           
+                if ((mapRoutes.last?.steps.isEmpty) != nil) {
             List {
-        ForEach(mapRoutes.last?.steps ?? [], id: \.self) { step in
+        ForEach(mapRoutes.last!.steps, id: \.self) { step in
             DirectionsRow(step: step)
         }
             } .padding(.top, 62)
-           
+            
+            }
             VStack {
                
                 HStack {
@@ -85,11 +92,13 @@ struct DirectionsView: View {
                 }
                 Spacer()
             } .padding()
+        
         }
     }
     
-    private func groupAndRequestDirections() {
+     func groupAndRequestDirections() {
       guard let firstStop = route.stops.first else {
+
         return
       }
 
@@ -103,9 +112,11 @@ struct DirectionsView: View {
       }
 
       fetchNextRoute()
+        ready = true
+
     }
 
-    private func fetchNextRoute() {
+     func fetchNextRoute() {
       guard !groupedRoutes.isEmpty else {
        
         return
