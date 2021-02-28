@@ -17,6 +17,7 @@ struct LocList: View {
     var body: some View {
             
             List {
+              
                 
                 ForEach(self.landmarks, id: \.id) { landmark in LocListCell(
                     

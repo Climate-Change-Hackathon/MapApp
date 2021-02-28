@@ -21,6 +21,7 @@ struct HeaderView: View {
     @State var speed = 0.0
     @Binding var landmark: Landmark
     @State var schedule = false
+    @EnvironmentObject var userData: UserData
     var body: some View {
         ZStack {
         HStack {
@@ -57,6 +58,7 @@ struct HeaderView: View {
                             center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
                             span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)
                         )
+                        
                         typing = false
                     }
                 }
@@ -127,7 +129,7 @@ struct HeaderView: View {
             }
         }
         .sheet(isPresented: $schedule, content: {
-            ArrivalInputView(mkRoute: $mkRoute, region: $region)
+            ArrivalInputView(mkRoute: $mkRoute, region: $region, locationManager: locationManager, schedule: $schedule)
         })
     }
         if typing {

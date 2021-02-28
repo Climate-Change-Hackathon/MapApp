@@ -11,6 +11,9 @@
 		E145D36A25EB26D200440508 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36925EB26D200440508 /* Report.swift */; };
 		E145D36D25EB26DD00440508 /* PlannedCommute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D36C25EB26DD00440508 /* PlannedCommute.swift */; };
 		E145D37025EB27B400440508 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E145D36F25EB27B400440508 /* GoogleService-Info.plist */; };
+		E145D37425EB37D700440508 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37325EB37D700440508 /* Speech.swift */; };
+		E145D37725EB5FE400440508 /* FootprintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37625EB5FE400440508 /* FootprintView.swift */; };
+		E145D37A25EB609700440508 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D37925EB609600440508 /* UserData.swift */; };
 		E15A650325E9D6790075B15C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650225E9D6790075B15C /* AppDelegate.swift */; };
 		E15A650525E9D67A0075B15C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650425E9D67A0075B15C /* SceneDelegate.swift */; };
 		E15A650725E9D67A0075B15C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A650625E9D67A0075B15C /* ContentView.swift */; };
@@ -41,6 +44,9 @@
 		E145D36925EB26D200440508 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		E145D36C25EB26DD00440508 /* PlannedCommute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedCommute.swift; sourceTree = "<group>"; };
 		E145D36F25EB27B400440508 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E145D37325EB37D700440508 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
+		E145D37625EB5FE400440508 /* FootprintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintView.swift; sourceTree = "<group>"; };
+		E145D37925EB609600440508 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E15A64FF25E9D6790075B15C /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15A650225E9D6790075B15C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E15A650425E9D67A0075B15C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			children = (
 				E15A650625E9D67A0075B15C /* ContentView.swift */,
 				E15A654725EA80E40075B15C /* ArivalInputView.swift */,
+				E145D37625EB5FE400440508 /* FootprintView.swift */,
 				E15A654A25EA843E0075B15C /* LocList.swift */,
 				E15A655825EAA0A90075B15C /* Bottom */,
 				E15A653D25EA665C0075B15C /* Home */,
@@ -176,7 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				E15A652F25EA5D2A0075B15C /* RouteBuilder.swift */,
+				E145D37325EB37D700440508 /* Speech.swift */,
 				E15A653725EA5E180075B15C /* LocationManager.swift */,
+				E145D37925EB609600440508 /* UserData.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -353,9 +362,12 @@
 				E15A653025EA5D2A0075B15C /* RouteBuilder.swift in Sources */,
 				E15A654025EA666A0075B15C /* DirectionsView.swift in Sources */,
 				E1F4E6D925EABF0400074E31 /* ReportView.swift in Sources */,
+				E145D37A25EB609700440508 /* UserData.swift in Sources */,
 				E15A654325EA69E20075B15C /* DirectionRow.swift in Sources */,
 				E15A655625EAA0A60075B15C /* BottomView.swift in Sources */,
+				E145D37725EB5FE400440508 /* FootprintView.swift in Sources */,
 				E15A650725E9D67A0075B15C /* ContentView.swift in Sources */,
+				E145D37425EB37D700440508 /* Speech.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

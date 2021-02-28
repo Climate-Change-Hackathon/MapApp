@@ -21,12 +21,16 @@ struct HomeView: View {
     @State var speed = 0.0
     @State var landmark: Landmark = Landmark(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)))
     @State var reports = [Report]()
+    @EnvironmentObject var userData: UserData
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 Color.clear
                     
                     .onAppear() {
+                        //SpeechService.shared.speak(text: "Hello") {
+                            
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         region = locationManager.currentRegion ?? MKCoordinateRegion(
                             center: CLLocationCoordinate2D(latitude: 25.7617, longitude: 80.1918),
